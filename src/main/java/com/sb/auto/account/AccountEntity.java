@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Account {
+public class AccountEntity {
 
     @Id @GeneratedValue
     private Integer id;

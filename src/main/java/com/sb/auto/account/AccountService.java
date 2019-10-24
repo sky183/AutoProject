@@ -18,16 +18,16 @@ public class AccountService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Account account = accountRepository.findByUsername(username);
-        if (account == null) {
+        AccountEntity accountEntity = accountRepository.findByUsername(username);
+        if (accountEntity == null) {
             throw new UsernameNotFoundException(username);
         }
 
-        return new UserAccount(account);
+        return new UserAccount(accountEntity);
     }
 
-    public Account createNew(Account account) {
-        account.encodePassword(passwordEncoder);
-        return this.accountRepository.save(account);
+    public AccountEntity createNew(AccountEntity accountEntity) {
+        accountEntity.encodePassword(passwordEncoder);
+        return this.accountRepository.save(accountEntity);
     }
 }

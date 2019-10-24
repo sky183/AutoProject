@@ -5,8 +5,8 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface BookRepository extends JpaRepository<Book, Integer> {
+public interface BookRepository extends JpaRepository<BookEntity, Integer> {
 
-    @Query("select b from Book b where b.author.id = ?#{principal.account.id}")
-    List<Book> findCurrentUserBooks();
+    @Query("select b from BookEntity b where b.author.id = ?#{principal.accountEntity.id}")
+    List<BookEntity> findCurrentUserBooks();
 }

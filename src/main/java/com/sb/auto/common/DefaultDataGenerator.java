@@ -1,8 +1,8 @@
 package com.sb.auto.common;
 
-import com.sb.auto.account.Account;
+import com.sb.auto.account.AccountEntity;
 import com.sb.auto.account.AccountService;
-import com.sb.auto.book.Book;
+import com.sb.auto.book.BookEntity;
 import com.sb.auto.book.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -20,24 +20,24 @@ public class DefaultDataGenerator implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        Account keesun = createUser("keesun");
-        Account whiteship = createUser("whiteship");
+        AccountEntity keesun = createUser("keesun");
+        AccountEntity whiteship = createUser("whiteship");
         createBook("spring", keesun);
         createBook("hibernate", whiteship);
     }
 
-    private void createBook(String title, Account keesun) {
-        Book book = new Book();
-        book.setTitle(title);
-        book.setAuthor(keesun);
-        bookRepository.save(book);
+    private void createBook(String title, AccountEntity keesun) {
+        BookEntity bookEntity = new BookEntity();
+        bookEntity.setTitle(title);
+        bookEntity.setAuthor(keesun);
+        bookRepository.save(bookEntity);
     }
 
-    private Account createUser(String usename) {
-        Account account = new Account();
-        account.setUsername(usename);
-        account.setPassword("123");
-        account.setRole("USER");
-        return accountService.createNew(account);
+    private AccountEntity createUser(String usename) {
+        AccountEntity accountEntity = new AccountEntity();
+        accountEntity.setUsername(usename);
+        accountEntity.setPassword("123");
+        accountEntity.setRole("USER");
+        return accountService.createNew(accountEntity);
     }
 }

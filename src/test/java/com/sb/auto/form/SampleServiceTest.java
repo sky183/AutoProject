@@ -1,6 +1,6 @@
 package com.sb.auto.form;
 
-import com.sb.auto.account.Account;
+import com.sb.auto.account.AccountEntity;
 import com.sb.auto.account.AccountService;
 import com.sb.auto.service.SampleService;
 import org.junit.Test;
@@ -29,11 +29,11 @@ public class SampleServiceTest {
 
     @Test
     public void dashboard() {
-        Account account = new Account();
-        account.setRole("ADMIN");
-        account.setUsername("keesun");
-        account.setPassword("123");
-        accountService.createNew(account);
+        AccountEntity accountEntity = new AccountEntity();
+        accountEntity.setRole("ADMIN");
+        accountEntity.setUsername("keesun");
+        accountEntity.setPassword("123");
+        accountService.createNew(accountEntity);
 
         UserDetails userDetails = accountService.loadUserByUsername("keesun");
 

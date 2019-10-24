@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class AccountControllerTest {
+public class AccountEntityControllerTest {
 
     @Autowired
     MockMvc mockMvc;
@@ -66,7 +66,7 @@ public class AccountControllerTest {
     public void login_success() throws Exception {
         String username = "keesun";
         String password = "123";
-        Account user = this.createUser(username, password);
+        AccountEntity user = this.createUser(username, password);
         mockMvc.perform(formLogin().user(user.getUsername()).password(password))
                 .andExpect(authenticated());
     }
@@ -76,7 +76,7 @@ public class AccountControllerTest {
     public void login_success2() throws Exception {
         String username = "keesun";
         String password = "123";
-        Account user = this.createUser(username, password);
+        AccountEntity user = this.createUser(username, password);
         mockMvc.perform(formLogin().user(user.getUsername()).password(password))
                 .andExpect(authenticated());
     }
@@ -86,17 +86,17 @@ public class AccountControllerTest {
     public void login_fail() throws Exception {
         String username = "keesun";
         String password = "123";
-        Account user = this.createUser(username, password);
+        AccountEntity user = this.createUser(username, password);
         mockMvc.perform(formLogin().user(user.getUsername()).password("12345"))
                 .andExpect(unauthenticated());
     }
 
-    private Account createUser(String username, String password) {
-        Account account = new Account();
-        account.setUsername(username);
-        account.setPassword(password);
-        account.setRole("USER");
-        return accountService.createNew(account);
+    private AccountEntity createUser(String username, String password) {
+        AccountEntity accountEntity = new AccountEntity();
+        accountEntity.setUsername(username);
+        accountEntity.setPassword(password);
+        accountEntity.setRole("USER");
+        return accountService.createNew(accountEntity);
     }
 
 }

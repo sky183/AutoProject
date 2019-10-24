@@ -7,14 +7,14 @@ import java.util.Arrays;
 
 public class UserAccount extends User {
 
-    private Account account;
+    private AccountEntity accountEntity;
 
-    public UserAccount(Account account) {
-        super(account.getUsername(), account.getPassword(), Arrays.asList(new SimpleGrantedAuthority("ROLE_" + account.getRole())));
-        this.account = account;
+    public UserAccount(AccountEntity accountEntity) {
+        super(accountEntity.getUsername(), accountEntity.getPassword(), Arrays.asList(new SimpleGrantedAuthority("ROLE_" + accountEntity.getRole())));
+        this.accountEntity = accountEntity;
     }
 
-    public Account getAccount() {
-        return account;
+    public AccountEntity getAccountEntity() {
+        return accountEntity;
     }
 }

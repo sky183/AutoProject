@@ -1,6 +1,6 @@
 package com.sb.auto.controller;
 
-import com.sb.auto.account.Account;
+import com.sb.auto.account.AccountEntity;
 import com.sb.auto.account.AccountRepository;
 import com.sb.auto.book.BookRepository;
 import com.sb.auto.common.CurrentUser;
@@ -16,7 +16,7 @@ import java.security.Principal;
 import java.util.concurrent.Callable;
 
 @Controller
-public class SampleController {
+public class MainController {
 
     @Autowired
     SampleService sampleService;
@@ -28,11 +28,11 @@ public class SampleController {
     BookRepository bookRepository;
 
     @GetMapping("/")
-    public String index(Model model, @CurrentUser Account account) {
-        if (account == null) {
+    public String index(Model model, @CurrentUser AccountEntity accountEntity) {
+        if (accountEntity == null) {
             model.addAttribute("message", "Hello Spring Security");
         } else {
-            model.addAttribute("message", "Hello, " + account.getUsername());
+            model.addAttribute("message", "Hello, " + accountEntity.getUsername());
         }
 
         return "index";
