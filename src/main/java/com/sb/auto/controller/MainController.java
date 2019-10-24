@@ -7,6 +7,7 @@ import com.sb.auto.common.CurrentUser;
 import com.sb.auto.common.SecurityLogger;
 import com.sb.auto.service.SampleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,26 +38,20 @@ public class MainController {
 
         return "index";
     }
-
-    @GetMapping("/info")
-    public String info(Model model) {
-        model.addAttribute("message", "Info");
-        return "info";
-    }
-
+    //@PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/dashboard")
     public String dashboard(Model model, Principal principal) {
         model.addAttribute("message", "Hello " + principal.getName());
         sampleService.dashboard();
         return "dashboard";
     }
-
+    //@PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/admin")
     public String admin(Model model, Principal principal) {
         model.addAttribute("message", "Hello Admin, " + principal.getName());
         return "admin";
     }
-
+    //@PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/user")
     public String user(Model model, Principal principal) {
         model.addAttribute("message", "Hello User, " + principal.getName());

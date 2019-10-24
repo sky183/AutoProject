@@ -50,9 +50,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.addFilterBefore(new LoggingFilter(), WebAsyncManagerIntegrationFilter.class);
         //권한 부여
         http.authorizeRequests()
-                .mvcMatchers("/", "/info", "/account/**", "/signup").permitAll()
-                .mvcMatchers("/admin").hasRole("ADMIN")
-                .mvcMatchers("/user").hasRole("USER")
+                .mvcMatchers("/", "/account/**", "/signup").permitAll()
+//                .mvcMatchers("/admin").hasRole("ADMIN")
+//                .mvcMatchers("/user").hasRole("USER")
                 .anyRequest().authenticated()
                 .expressionHandler(expressionHandler());
         //로그인 페이지(모든 사용자 접근 가능)

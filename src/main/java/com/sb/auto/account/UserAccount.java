@@ -12,6 +12,7 @@ public class UserAccount extends User {
     public UserAccount(AccountEntity accountEntity) {
         super(accountEntity.getUsername(), accountEntity.getPassword(), Arrays.asList(new SimpleGrantedAuthority("ROLE_" + accountEntity.getRole())));
         this.accountEntity = accountEntity;
+        AccountContext.setAccount(accountEntity);
     }
 
     public AccountEntity getAccountEntity() {

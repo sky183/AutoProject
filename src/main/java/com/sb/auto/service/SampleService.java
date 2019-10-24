@@ -8,6 +8,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 @Service
 public class SampleService {
 
@@ -15,9 +20,11 @@ public class SampleService {
     public void dashboard() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        Iterator it = userDetails.getAuthorities().iterator();
         System.out.println("===============");
         System.out.println(authentication);
         System.out.println(userDetails.getUsername());
+        System.out.println(it.next());
     }
 
     @Async

@@ -1,11 +1,14 @@
 package com.sb.auto.account;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.Iterator;
 
 @Controller
 public class AccountController {
@@ -45,6 +48,7 @@ public class AccountController {
     @GetMapping("/access-denied")
     public String accessDenied(Principal principal, Model model) {
         model.addAttribute("name", principal.getName());
+        model.addAttribute("role", AccountContext.getAccount().getRole());
         return "access-denied";
     }
 
