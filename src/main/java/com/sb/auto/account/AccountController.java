@@ -47,8 +47,9 @@ public class AccountController {
 
     @GetMapping("/access-denied")
     public String accessDenied(Principal principal, Model model) {
+        UsernamePasswordAuthenticationToken token = (UsernamePasswordAuthenticationToken)principal;
         model.addAttribute("name", principal.getName());
-        model.addAttribute("role", AccountContext.getAccount().getRole());
+        model.addAttribute("role", ((UserAccount)token.getPrincipal()).getAccountEntity().getRole());
         return "access-denied";
     }
 
