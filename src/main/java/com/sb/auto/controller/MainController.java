@@ -1,13 +1,12 @@
 package com.sb.auto.controller;
 
-import com.sb.auto.account.AccountEntity;
+import com.sb.auto.account.UserEntity;
 import com.sb.auto.account.AccountRepository;
 import com.sb.auto.book.BookRepository;
 import com.sb.auto.common.CurrentUser;
 import com.sb.auto.common.SecurityLogger;
 import com.sb.auto.service.SampleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,11 +28,11 @@ public class MainController {
     BookRepository bookRepository;
 
     @GetMapping("/")
-    public String index(Model model, @CurrentUser AccountEntity accountEntity) {
-        if (accountEntity == null) {
+    public String index(Model model, @CurrentUser UserEntity userEntity) {
+        if (userEntity == null) {
             model.addAttribute("message", "Hello Spring Security");
         } else {
-            model.addAttribute("message", "Hello, " + accountEntity.getUsername());
+            model.addAttribute("message", "Hello, " + userEntity.getUserId());
         }
 
         return "index";

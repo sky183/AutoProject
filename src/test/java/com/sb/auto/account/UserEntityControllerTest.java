@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class AccountEntityControllerTest {
+public class UserEntityControllerTest {
 
     @Autowired
     MockMvc mockMvc;
@@ -66,8 +66,8 @@ public class AccountEntityControllerTest {
     public void login_success() throws Exception {
         String username = "keesun";
         String password = "123";
-        AccountEntity user = this.createUser(username, password);
-        mockMvc.perform(formLogin().user(user.getUsername()).password(password))
+        UserEntity user = this.createUser(username, password);
+        mockMvc.perform(formLogin().user(user.getUserId()).password(password))
                 .andExpect(authenticated());
     }
 
@@ -76,8 +76,8 @@ public class AccountEntityControllerTest {
     public void login_success2() throws Exception {
         String username = "keesun";
         String password = "123";
-        AccountEntity user = this.createUser(username, password);
-        mockMvc.perform(formLogin().user(user.getUsername()).password(password))
+        UserEntity user = this.createUser(username, password);
+        mockMvc.perform(formLogin().user(user.getUserId()).password(password))
                 .andExpect(authenticated());
     }
 
@@ -86,17 +86,17 @@ public class AccountEntityControllerTest {
     public void login_fail() throws Exception {
         String username = "keesun";
         String password = "123";
-        AccountEntity user = this.createUser(username, password);
-        mockMvc.perform(formLogin().user(user.getUsername()).password("12345"))
+        UserEntity user = this.createUser(username, password);
+        mockMvc.perform(formLogin().user(user.getUserId()).password("12345"))
                 .andExpect(unauthenticated());
     }
 
-    private AccountEntity createUser(String username, String password) {
-        AccountEntity accountEntity = new AccountEntity();
-        accountEntity.setUsername(username);
-        accountEntity.setPassword(password);
-        accountEntity.setRole("USER");
-        return accountService.createNew(accountEntity);
+    private UserEntity createUser(String username, String password) {
+        UserEntity userEntity = new UserEntity();
+        userEntity.setUserId(username);
+        userEntity.setUserPassword(password);
+        userEntity.setUserRole("USER");
+        return accountService.insertUser(userEntity);
     }
 
 }

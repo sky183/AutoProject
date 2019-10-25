@@ -17,17 +17,17 @@ public class AccountService implements UserDetailsService {
     PasswordEncoder passwordEncoder;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        AccountEntity accountEntity = accountRepository.findByUsername(username);
-        if (accountEntity == null) {
-            throw new UsernameNotFoundException(username);
+    public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
+        UserEntity userEntity = accountRepository.findByUserId(userId);
+        if (userEntity == null) {
+            throw new UsernameNotFoundException(userId);
         }
 
-        return new UserAccount(accountEntity);
+        return new UserAccount(userEntity);
     }
 
-    public AccountEntity createNew(AccountEntity accountEntity) {
-        accountEntity.encodePassword(passwordEncoder);
-        return this.accountRepository.save(accountEntity);
+    public UserEntity insertUser(UserEntity userEntity) {
+        userEntity.encodePassword(passwordEncoder);
+        return this.accountRepository.save(userEntity);
     }
 }

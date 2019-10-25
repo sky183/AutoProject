@@ -2,13 +2,13 @@ package com.sb.auto.account;
 
 public class AccountContext {
 
-    private static final ThreadLocal<AccountEntity> ACCOUNT_THREAD_LOCAL = new ThreadLocal<>();
+    private static final ThreadLocal<UserEntity> ACCOUNT_THREAD_LOCAL = new ThreadLocal<>();
 
-    public static void setAccount(AccountEntity accountEntity) {
-        ACCOUNT_THREAD_LOCAL.set(accountEntity);
+    public static void setAccount(UserEntity userEntity) {
+        ACCOUNT_THREAD_LOCAL.set(userEntity);
     }
 
-    public static AccountEntity getAccount() {
+    public static UserEntity getAccount() {
         return ACCOUNT_THREAD_LOCAL.get();
     }
 

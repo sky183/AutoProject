@@ -1,14 +1,12 @@
 package com.sb.auto.account;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.util.Iterator;
 
 @Controller
 public class AccountController {
@@ -18,8 +16,8 @@ public class AccountController {
 
     @GetMapping("/account/{role}/{username}/{password}")
     @ResponseBody
-    public AccountEntity createAccount(@ModelAttribute AccountEntity accountEntity) {
-        return accountService.createNew(accountEntity);
+    public UserEntity createAccount(@ModelAttribute UserEntity userEntity) {
+        return accountService.insertUser(userEntity);
     }
 
     @GetMapping("/login")
@@ -34,22 +32,21 @@ public class AccountController {
 
     @GetMapping("/signup")
     public String signupForm(Model model) {
-        model.addAttribute("accountEntity", new AccountEntity());
+        model.addAttribute("userEntity", new UserEntity());
         return "signup";
     }
 
     @PostMapping("/signup")
-    public String processSignUp(@ModelAttribute AccountEntity accountEntity) {
-        accountEntity.setRole("USER");
-        accountService.createNew(accountEntity);
+    public String processSignUp(@ModelAttribute UserEntity userEntity) {
+        userEntity.setUserRole("USER");
+        accountService.insertUser(userEntity);
         return "redirect:/";
     }
 
     @GetMapping("/access-denied")
-    public String accessDenied(Principal principal, Model model) {
-        UsernamePasswordAuthenticationToken token = (UsernamePasswordAuthenticationToken)principal;
-        model.addAttribute("name", principal.getName());
-        model.addAttribute("role", ((UserAccount)token.getPrincipal()).getAccountEntity().getRole());
+    public String accessDenied(Principal principal, @AuthenticationPrincipal UserAccount userAccount, Model model) {
+        model.addAttribute("userId", principal.getName());
+        model.addAttribute("userRole", userAccount.getUserEntity().getUserRole());
         return "access-denied";
     }
 

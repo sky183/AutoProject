@@ -1,7 +1,7 @@
 package com.sb.auto.book;
 
 
-import com.sb.auto.account.AccountEntity;
+import com.sb.auto.account.UserEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,7 +18,7 @@ public class BookEntity {
     private String title;
 
     @ManyToOne
-    private AccountEntity author;
+    private UserEntity author;
 
     public Integer getId() {
         return id;
@@ -36,11 +36,11 @@ public class BookEntity {
         this.title = title;
     }
 
-    public AccountEntity getAuthor() {
+    public UserEntity getAuthor() {
         return author;
     }
 
-    public void setAuthor(AccountEntity author) {
+    public void setAuthor(UserEntity author) {
         this.author = author;
     }
 }
