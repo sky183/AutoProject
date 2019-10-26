@@ -1,5 +1,6 @@
 package com.sb.auto.account;
 
+import com.sb.auto.annotation.CurrentUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -40,13 +41,14 @@ public class AccountController {
     public String processSignUp(@ModelAttribute UserEntity userEntity) {
         userEntity.setUserRole("USER");
         accountService.insertUser(userEntity);
-        return "redirect:/";
+//        return "redirect:/";
+        return accountService.insertUser(userEntity).toString();
     }
 
     @GetMapping("/access-denied")
-    public String accessDenied(Principal principal, @AuthenticationPrincipal UserAccount userAccount, Model model) {
+    public String accessDenied(Principal principal, @CurrentUser UserEntity userEntity, Model model) {
         model.addAttribute("userId", principal.getName());
-        model.addAttribute("userRole", userAccount.getUserEntity().getUserRole());
+        model.addAttribute("userRole", userEntity.getUserRole());
         return "access-denied";
     }
 

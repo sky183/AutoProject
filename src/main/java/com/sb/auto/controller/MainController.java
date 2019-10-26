@@ -3,7 +3,7 @@ package com.sb.auto.controller;
 import com.sb.auto.account.UserEntity;
 import com.sb.auto.account.AccountRepository;
 import com.sb.auto.book.BookRepository;
-import com.sb.auto.common.CurrentUser;
+import com.sb.auto.annotation.CurrentUser;
 import com.sb.auto.common.SecurityLogger;
 import com.sb.auto.service.SampleService;
 import org.springframework.beans.factory.annotation.Autowired;

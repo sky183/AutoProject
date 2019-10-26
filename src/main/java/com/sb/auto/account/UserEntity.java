@@ -12,9 +12,10 @@ import javax.persistence.*;
 @Table(name = "USER")
 public class UserEntity {
 
-    @Id @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer userSeq;
 
+    @Id
     @Column(unique = true)
     private String userId;
 
