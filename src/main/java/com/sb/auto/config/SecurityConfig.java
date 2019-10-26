@@ -1,6 +1,6 @@
 package com.sb.auto.config;
 
-import com.sb.auto.account.AccountService;
+import com.sb.auto.security.CustomUserDetailService;
 import com.sb.auto.common.LoggingFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
@@ -23,7 +23,7 @@ import org.springframework.security.web.context.request.async.WebAsyncManagerInt
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    AccountService accountService;
+    CustomUserDetailService customUserDetailService;
 
     /**
      * 권한 계층 설정
@@ -51,8 +51,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //권한 부여
         http.authorizeRequests()
                 .mvcMatchers("/", "/account/**", "/signup").permitAll()
-//                .mvcMatchers("/admin").hasRole("ADMIN")
-//                .mvcMatchers("/user").hasRole("USER")
+                .mvcMatchers("/admin").hasRole("ADMIN")
+                .mvcMatchers("/user").hasRole("USER")
                 .anyRequest().authenticated()
                 .expressionHandler(expressionHandler());
         //로그인 페이지(모든 사용자 접근 가능)
@@ -61,7 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll();
 
         http.rememberMe()
-                .userDetailsService(accountService)
+                .userDetailsService(customUserDetailService)
                 .key("remember-me-sample");
 
         http.httpBasic();

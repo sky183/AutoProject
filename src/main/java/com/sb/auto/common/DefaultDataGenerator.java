@@ -1,9 +1,9 @@
 package com.sb.auto.common;
 
-import com.sb.auto.account.UserEntity;
-import com.sb.auto.account.AccountService;
-import com.sb.auto.book.BookEntity;
-import com.sb.auto.book.BookRepository;
+import com.sb.auto.security.UserEntity;
+import com.sb.auto.security.CustomUserDetailService;
+import com.sb.auto.etc.BookEntity;
+import com.sb.auto.etc.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -13,17 +13,17 @@ import org.springframework.stereotype.Component;
 public class DefaultDataGenerator implements ApplicationRunner {
 
     @Autowired
-    AccountService accountService;
+    CustomUserDetailService customUserDetailService;
 
     @Autowired
     BookRepository bookRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        UserEntity keesun = createUser("keesun");
+/*        UserEntity keesun = createUser("keesun");
         UserEntity whiteship = createUser("whiteship");
         createBook("spring", keesun);
-        createBook("hibernate", whiteship);
+        createBook("hibernate", whiteship);*/
     }
 
     private void createBook(String title, UserEntity keesun) {
@@ -38,6 +38,6 @@ public class DefaultDataGenerator implements ApplicationRunner {
         userEntity.setUserId(usename);
         userEntity.setUserPassword("123");
         userEntity.setUserRole("USER");
-        return accountService.insertUser(userEntity);
+        return customUserDetailService.insertUser(userEntity);
     }
 }

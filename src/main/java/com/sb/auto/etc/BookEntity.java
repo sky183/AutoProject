@@ -1,7 +1,7 @@
-package com.sb.auto.book;
+package com.sb.auto.etc;
 
 
-import com.sb.auto.account.UserEntity;
+import com.sb.auto.security.UserEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

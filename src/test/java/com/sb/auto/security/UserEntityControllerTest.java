@@ -1,4 +1,4 @@
-package com.sb.auto.account;
+package com.sb.auto.security;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,7 +27,7 @@ public class UserEntityControllerTest {
     MockMvc mockMvc;
 
     @Autowired
-    AccountService accountService;
+    CustomUserDetailService customUserDetailService;
 
     @Test
     @WithAnonymousUser
@@ -96,7 +96,7 @@ public class UserEntityControllerTest {
         userEntity.setUserId(username);
         userEntity.setUserPassword(password);
         userEntity.setUserRole("USER");
-        return accountService.insertUser(userEntity);
+        return customUserDetailService.insertUser(userEntity);
     }
 
 }

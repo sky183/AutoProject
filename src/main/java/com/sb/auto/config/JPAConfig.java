@@ -1,26 +1,15 @@
 package com.sb.auto.config;
 
-import com.zaxxer.hikari.HikariDataSource;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.jdbc.DataSourceBuilder;
-import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
-import org.springframework.context.annotation.*;
-import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.persistence.EntityManagerFactory;
-import javax.sql.DataSource;
-
+/*@Slf4j
 @Configuration
 @EnableTransactionManagement
+@PropertySource("classpath:/application.properties")*/
 public class JPAConfig {
 
-    @Primary
+/*    @Primary
     @Bean(name = "dataSource")
-    @ConfigurationProperties("spring.datasource.localdb")
+    @ConfigurationProperties(prefix = "spring.datasource.hikari")
     public DataSource dataSource() {
         return DataSourceBuilder.create().type(HikariDataSource.class).build();
     }
@@ -36,11 +25,10 @@ public class JPAConfig {
     @Bean(name = "transactionManager")
     public PlatformTransactionManager transactionManager(
             @Qualifier("entityManagerFactory") EntityManagerFactory entityManagerFactory) {
-
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactory);
 
         return transactionManager;
-    }
+    }*/
 
 }

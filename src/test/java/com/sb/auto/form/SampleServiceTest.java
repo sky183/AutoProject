@@ -1,7 +1,7 @@
 package com.sb.auto.form;
 
-import com.sb.auto.account.UserEntity;
-import com.sb.auto.account.AccountService;
+import com.sb.auto.security.UserEntity;
+import com.sb.auto.security.CustomUserDetailService;
 import com.sb.auto.service.SampleService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,7 +22,7 @@ public class SampleServiceTest {
     SampleService sampleService;
 
     @Autowired
-    AccountService accountService;
+    CustomUserDetailService customUserDetailService;
 
     @Autowired
     AuthenticationManager authenticationManager;
@@ -33,9 +33,9 @@ public class SampleServiceTest {
         userEntity.setUserRole("ADMIN");
         userEntity.setUserId("keesun");
         userEntity.setUserPassword("123");
-        accountService.insertUser(userEntity);
+        customUserDetailService.insertUser(userEntity);
 
-        UserDetails userDetails = accountService.loadUserByUsername("keesun");
+        UserDetails userDetails = customUserDetailService.loadUserByUsername("keesun");
 
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userDetails, "123");
         Authentication authentication = authenticationManager.authenticate(token);

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.sb.auto.mapper.MemberMapper">
+
+    <select id="findByUserId" resultType="com.sb.auto.security.UserEntity">
+        select * from USER
+        where USER_ID = #{userId}
+    </select>
+
+    <insert id="save" parameterType="com.sb.auto.security.UserEntity">
+        INSERT INTO `admindb`.`USER` (`USER_ID`, `USER_PASSWORD`, `USER_ROLE`, `USER_NAME`, `PHONE`, `POINT`) VALUES
+        (#{userId}, #{userPassword}, #{userRole}, #{userName}, #{phone}, #{point});
+    </insert>
+
+</mapper>

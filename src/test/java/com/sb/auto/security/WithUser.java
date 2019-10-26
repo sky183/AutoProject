@@ -1,4 +1,4 @@
-package com.sb.auto.account;
+package com.sb.auto.security;
 
 import org.springframework.security.test.context.support.WithMockUser;
 

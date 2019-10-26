@@ -1,4 +1,4 @@
-package com.sb.auto.account;
+package com.sb.auto.security;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,13 +9,13 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "USER")
+//@Table(name = "USER")
 public class UserEntity {
 
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    //@GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Id @GeneratedValue
     private Integer userSeq;
 
-    @Id
     @Column(unique = true)
     private String userId;
 
@@ -26,6 +26,8 @@ public class UserEntity {
     private String userName;
 
     private String phone;
+
+    private int point;
 
     public void encodePassword(PasswordEncoder passwordEncoder) {
         this.userPassword = passwordEncoder.encode(this.userPassword);

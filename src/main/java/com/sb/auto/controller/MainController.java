@@ -1,12 +1,13 @@
 package com.sb.auto.controller;
 
-import com.sb.auto.account.UserEntity;
-import com.sb.auto.account.AccountRepository;
-import com.sb.auto.book.BookRepository;
-import com.sb.auto.annotation.CurrentUser;
+import com.sb.auto.security.UserEntity;
+import com.sb.auto.security.CustomJpaRepository;
+import com.sb.auto.etc.BookRepository;
 import com.sb.auto.common.SecurityLogger;
+import com.sb.auto.common.annotation.CurrentUser;
 import com.sb.auto.service.SampleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +23,7 @@ public class MainController {
     SampleService sampleService;
 
     @Autowired
-    AccountRepository accountRepository;
+    CustomJpaRepository customJpaRepository;
 
     @Autowired
     BookRepository bookRepository;
@@ -44,13 +45,13 @@ public class MainController {
         sampleService.dashboard();
         return "dashboard";
     }
-    //@PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/admin")
     public String admin(Model model, Principal principal) {
         model.addAttribute("message", "Hello Admin, " + principal.getName());
         return "admin";
     }
-    //@PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/user")
     public String user(Model model, Principal principal) {
         model.addAttribute("message", "Hello User, " + principal.getName());

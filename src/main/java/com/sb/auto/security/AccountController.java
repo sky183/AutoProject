@@ -1,11 +1,13 @@
-package com.sb.auto.account;
+package com.sb.auto.security;
 
-import com.sb.auto.annotation.CurrentUser;
+import com.sb.auto.common.annotation.CurrentUser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.security.Principal;
 
@@ -13,12 +15,12 @@ import java.security.Principal;
 public class AccountController {
 
     @Autowired
-    AccountService accountService;
+    CustomUserDetailService customUserDetailService;
 
-    @GetMapping("/account/{role}/{username}/{password}")
+    @GetMapping("/account/{userRole}/{userId}/{userPassword}")
     @ResponseBody
     public UserEntity createAccount(@ModelAttribute UserEntity userEntity) {
-        return accountService.insertUser(userEntity);
+        return customUserDetailService.insertUser(userEntity);
     }
 
     @GetMapping("/login")
@@ -38,11 +40,11 @@ public class AccountController {
     }
 
     @PostMapping("/signup")
-    public String processSignUp(@ModelAttribute UserEntity userEntity) {
+    @ResponseBody
+    public UserEntity processSignUp(@ModelAttribute UserEntity userEntity) {
         userEntity.setUserRole("USER");
-        accountService.insertUser(userEntity);
 //        return "redirect:/";
-        return accountService.insertUser(userEntity).toString();
+        return customUserDetailService.insertUser(userEntity);
     }
 
     @GetMapping("/access-denied")

@@ -1,4 +1,4 @@
-package com.sb.auto.annotation;
+package com.sb.auto.common.annotation;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
