@@ -27,7 +27,7 @@ public class SignUpControllerTest {
     @Test
     public void signUpForm() throws Exception {
         mockMvc.perform(get("/signup"))
-                .andDo(print())
+                .andDo(print()) //http 내용을 프린트해줌
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("_csrf")));
     }
