@@ -37,7 +37,7 @@ public class SignUpControllerTest {
         mockMvc.perform(post("/signup")
                 .param("username", "keesun")
                 .param("password", "123")
-                .with(csrf()))
+                .with(csrf())) //Post 요청의 경우 csrf 토큰을 같이 전송해야 테스트 성공한다.
                 .andDo(print())
                 .andExpect(status().is3xxRedirection());
     }
