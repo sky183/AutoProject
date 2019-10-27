@@ -8,6 +8,7 @@
     <h1>Logout</h1>
     <form action="/logout" method="post" th:action="@{/logout}">
         <p><input type="submit" value="Logout"></p>
+<!--        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">-->
     </form>
 </body>
 </html>

@@ -20,9 +20,7 @@ public class LoggingFilter extends GenericFilterBean {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start(((HttpServletRequest)request).getRequestURI());
-
         chain.doFilter(request, response);
-
         stopWatch.stop();
         logger.info(stopWatch.prettyPrint());
     }
