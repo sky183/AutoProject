@@ -1,5 +1,7 @@
 package com.sb.auto.security;
 
+import com.sb.auto.model.UserEntity;
+import com.sb.auto.service.CustomUserDetailService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

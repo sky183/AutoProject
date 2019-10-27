@@ -1,19 +1,19 @@
-package com.sb.auto.security;
+package com.sb.auto.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 
-@Getter
-@Setter
+/*@Getter
+@Setter*/
+@Data
 @Entity
 //@Table(name = "USER")
 public class UserEntity {
 
-    //@GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+//    @Id @GeneratedValue
     private Integer userSeq;
 
     @Column(unique = true)

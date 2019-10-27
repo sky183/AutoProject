@@ -1,6 +1,6 @@
 package com.sb.auto.mapper;
 
-import com.sb.auto.security.UserEntity;
+import com.sb.auto.model.UserEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

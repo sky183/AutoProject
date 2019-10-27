@@ -1,6 +1,6 @@
 package com.sb.auto.config;
 
-import com.sb.auto.security.CustomUserDetailService;
+import com.sb.auto.service.CustomUserDetailService;
 import com.sb.auto.common.LoggingFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;

@@ -1,4 +1,4 @@
-package com.sb.auto.config;
+package com.sb.auto.common.enums;
 
 /**
  * 권한 타입

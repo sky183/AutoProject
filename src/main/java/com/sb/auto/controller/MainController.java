@@ -1,10 +1,9 @@
 package com.sb.auto.controller;
 
-import com.sb.auto.security.UserEntity;
-import com.sb.auto.security.CustomJpaRepository;
-import com.sb.auto.etc.BookRepository;
-import com.sb.auto.common.SecurityLogger;
 import com.sb.auto.common.annotation.CurrentUser;
+import com.sb.auto.common.util.SecurityLogger;
+import com.sb.auto.mapper.CustomJpaRepository;
+import com.sb.auto.model.UserEntity;
 import com.sb.auto.service.SampleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -24,9 +23,6 @@ public class MainController {
 
     @Autowired
     CustomJpaRepository customJpaRepository;
-
-    @Autowired
-    BookRepository bookRepository;
 
     @GetMapping("/")
     public String index(Model model, @CurrentUser UserEntity userEntity) {
@@ -55,7 +51,7 @@ public class MainController {
     @GetMapping("/user")
     public String user(Model model, Principal principal) {
         model.addAttribute("message", "Hello User, " + principal.getName());
-        model.addAttribute("books", bookRepository.findCurrentUserBooks());
+//        model.addAttribute("books", bookRepository.findCurrentUserBooks());
         return "user";
     }
 

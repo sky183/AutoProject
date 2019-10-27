@@ -1,6 +1,9 @@
-package com.sb.auto.security;
+package com.sb.auto.service;
 
+import com.sb.auto.mapper.CustomJpaRepository;
 import com.sb.auto.mapper.MemberMapper;
+import com.sb.auto.model.UserEntity;
+import com.sb.auto.security.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

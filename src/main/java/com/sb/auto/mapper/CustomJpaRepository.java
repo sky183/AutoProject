@@ -1,5 +1,6 @@
-package com.sb.auto.security;
+package com.sb.auto.mapper;
 
+import com.sb.auto.model.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

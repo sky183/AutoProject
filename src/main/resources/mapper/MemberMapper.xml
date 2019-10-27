@@ -3,12 +3,12 @@
 
 <mapper namespace="com.sb.auto.mapper.MemberMapper">
 
-    <select id="findByUserId" resultType="com.sb.auto.security.UserEntity">
+    <select id="findByUserId" resultType="com.sb.auto.model.UserEntity">
         select * from USER
         where USER_ID = #{userId}
     </select>
 
-    <insert id="save" parameterType="com.sb.auto.security.UserEntity">
+    <insert id="save" parameterType="com.sb.auto.model.UserEntity">
         INSERT INTO `admindb`.`USER` (`USER_ID`, `USER_PASSWORD`, `USER_ROLE`, `USER_NAME`, `PHONE`, `POINT`) VALUES
         (#{userId}, #{userPassword}, #{userRole}, #{userName}, #{phone}, #{point});
     </insert>

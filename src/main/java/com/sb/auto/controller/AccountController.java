@@ -1,6 +1,8 @@
-package com.sb.auto.security;
+package com.sb.auto.controller;
 
 import com.sb.auto.common.annotation.CurrentUser;
+import com.sb.auto.model.UserEntity;
+import com.sb.auto.service.CustomUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

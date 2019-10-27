@@ -16,7 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class SampleServiceTest {
+public class CustomUserDetailServiceTest {
 
     @Autowired
     SampleService sampleService;
@@ -28,14 +28,19 @@ public class SampleServiceTest {
     AuthenticationManager authenticationManager;
 
     @Test
-    public void dashboard() {
+    public void loadUserByUsername() {
         UserEntity userEntity = new UserEntity();
         userEntity.setUserRole("ADMIN");
-        userEntity.setUserId("keesun");
-        userEntity.setUserPassword("123");
+        userEntity.setUserId("sky183");
+        userEntity.setUserPassword("1");
+        userEntity.setPhone("010");
+        userEntity.setPoint(20000);
+        userEntity.setUserName("김성범");
+        userEntity.setUserSeq(1);
+
         customUserDetailService.insertUser(userEntity);
 
-        UserDetails userDetails = customUserDetailService.loadUserByUsername("keesun");
+        UserDetails userDetails = customUserDetailService.loadUserByUsername("sky183");
 
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userDetails, "123");
         Authentication authentication = authenticationManager.authenticate(token);
@@ -43,6 +48,8 @@ public class SampleServiceTest {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         sampleService.dashboard();
+
     }
+
 
 }

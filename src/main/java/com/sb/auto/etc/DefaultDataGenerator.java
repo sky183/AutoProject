@@ -1,9 +1,7 @@
-package com.sb.auto.common;
+package com.sb.auto.etc;
 
-import com.sb.auto.security.UserEntity;
-import com.sb.auto.security.CustomUserDetailService;
-import com.sb.auto.etc.BookEntity;
-import com.sb.auto.etc.BookRepository;
+import com.sb.auto.service.CustomUserDetailService;
+import com.sb.auto.model.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -15,8 +13,8 @@ public class DefaultDataGenerator implements ApplicationRunner {
     @Autowired
     CustomUserDetailService customUserDetailService;
 
-    @Autowired
-    BookRepository bookRepository;
+/*    @Autowired
+    BookRepository bookRepository;*/
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -30,7 +28,7 @@ public class DefaultDataGenerator implements ApplicationRunner {
         BookEntity bookEntity = new BookEntity();
         bookEntity.setTitle(title);
         bookEntity.setAuthor(keesun);
-        bookRepository.save(bookEntity);
+//        bookRepository.save(bookEntity);
     }
 
     private UserEntity createUser(String usename) {

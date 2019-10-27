@@ -13,6 +13,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
 
 import javax.sql.DataSource;
@@ -23,21 +24,22 @@ import javax.sql.DataSource;
 @Slf4j
 @Configuration
 @PropertySource("classpath:/application.properties")
-@MapperScan(basePackages="com.sb.auto.mapper")
+@MapperScan(basePackages = {"com.sb.auto.mapper"})
 public class MyBatisConfig {
 
     @Autowired
     private ApplicationContext applicationContext;
 
-    @Bean
+    @Bean(name = "mybatisHikariConfig")
     @ConfigurationProperties(prefix = "spring.datasource.hikari")
     public HikariConfig hikariConfig() {
         return new HikariConfig();
     }
 
+    @Primary
     @Bean(name = "dataSource")
-    public DataSource dataSource() {
-        DataSource dataSource = new HikariDataSource(hikariConfig());
+    public DataSource dataSource(@Qualifier("mybatisHikariConfig") HikariConfig hikariConfig) {
+        DataSource dataSource = new HikariDataSource(hikariConfig);
         log.info("datasource : {}", dataSource);
         return dataSource;
     }

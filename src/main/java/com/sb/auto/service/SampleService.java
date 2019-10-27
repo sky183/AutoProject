@@ -1,6 +1,6 @@
 package com.sb.auto.service;
 
-import com.sb.auto.common.SecurityLogger;
+import com.sb.auto.common.util.SecurityLogger;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
@@ -8,10 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 @Service
 public class SampleService {

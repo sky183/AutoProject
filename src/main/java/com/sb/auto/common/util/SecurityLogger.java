@@ -1,4 +1,4 @@
-package com.sb.auto.common;
+package com.sb.auto.common.util;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 
