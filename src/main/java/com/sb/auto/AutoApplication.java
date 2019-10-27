@@ -17,11 +17,6 @@ public class AutoApplication extends SpringBootServletInitializer {
         return builder.sources(AutoApplication.class);
     }
 
-/*    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-    }*/
-
     public static void main(String[] args) {
         SpringApplication.run(AutoApplication.class, args);
     }
