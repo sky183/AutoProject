@@ -23,6 +23,12 @@ public class CustomUserDetailService implements UserDetailsService {
     @Autowired
     PasswordEncoder passwordEncoder;
 
+    /**
+     * Principal 객체 반환
+     * @param userId
+     * @return
+     * @throws UsernameNotFoundException
+     */
     @Override
     public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
 //        UserEntity userEntity = customJpaRepository.findByUserId(userId);
@@ -30,7 +36,6 @@ public class CustomUserDetailService implements UserDetailsService {
         if (userEntity == null) {
             throw new UsernameNotFoundException(userId);
         }
-
         return new UserAccount(userEntity);
     }
 
