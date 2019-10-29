@@ -16,8 +16,12 @@ import java.security.Principal;
 @Controller
 public class AccountController {
 
-    @Autowired
     UserDetailService userDetailService;
+
+    @Autowired
+    public AccountController(UserDetailService userDetailService) {
+        this.userDetailService = userDetailService;
+    }
 
     @GetMapping("/account/{userRole}/{userId}/{userPw}")
     @ResponseBody

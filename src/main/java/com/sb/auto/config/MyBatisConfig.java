@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -24,7 +23,7 @@ import javax.sql.DataSource;
 @Slf4j
 @Configuration
 @PropertySource("classpath:/application.properties")
-@MapperScan(basePackages = {"com.sb.auto.mapper"})
+//@MapperScan(basePackages = {"com.sb.auto.mapper"})
 public class MyBatisConfig {
 
     @Autowired

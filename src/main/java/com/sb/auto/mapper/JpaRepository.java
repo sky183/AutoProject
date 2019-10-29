@@ -7,7 +7,6 @@ import java.util.List;
 /**
  * JpaRepository DAO
  */
-//@Repository
 public interface JpaRepository extends org.springframework.data.jpa.repository.JpaRepository<UserEntity, Integer> {
 
     UserEntity findByUserId(String userId);

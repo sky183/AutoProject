@@ -5,15 +5,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 
-/*@Getter
-@Setter*/
 @Data
 @Entity
 //@Table(name = "USER")
 public class UserEntity {
 
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-//    @Id @GeneratedValue
     private Integer userSeq;
 
     @Column(unique = true)
@@ -28,6 +25,10 @@ public class UserEntity {
     private String phone;
 
     private int point;
+
+    private String visitDate;
+
+    private String regDate;
 
     public void encodePassword(PasswordEncoder passwordEncoder) {
         this.userPw = passwordEncoder.encode(this.userPw);

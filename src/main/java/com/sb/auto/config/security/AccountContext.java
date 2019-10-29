@@ -1,4 +1,4 @@
-package com.sb.auto.security;
+package com.sb.auto.config.security;
 
 import com.sb.auto.model.UserEntity;
 import org.springframework.jdbc.support.JdbcUtils;

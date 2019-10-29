@@ -1,4 +1,4 @@
-package com.sb.auto.security;
+package com.sb.auto.config.security;
 
 import com.sb.auto.model.UserEntity;
 import org.springframework.security.core.GrantedAuthority;
@@ -9,7 +9,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Principal 객체
+ * Principal 객체 - UserEntity를 생성해준다.
  */
 public class User extends org.springframework.security.core.userdetails.User {
 

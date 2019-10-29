@@ -29,12 +29,6 @@ import java.util.Properties;
 @EnableJpaRepositories(basePackages = {"com.sb.auto.mapper"})
 public class JPAConfig {
 
-/*    @Bean(name = "dataSourceJPA")
-    @ConfigurationProperties(prefix = "spring.jpa.hikari")
-    public DataSource dataSource() {
-        return DataSourceBuilder.create().type(HikariDataSource.class).build();
-    }*/
-
     @Bean(name = "jpaHikariConfig")
     @ConfigurationProperties(prefix = "spring.jpa.hikari")
     public HikariConfig hikariConfig() {

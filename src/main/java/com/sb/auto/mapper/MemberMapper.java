@@ -9,4 +9,6 @@ public interface MemberMapper {
 
     int save(UserEntity userEntity);
 
+    int updateUser(UserEntity userEntity);
+
 }

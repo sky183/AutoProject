@@ -9,8 +9,12 @@
     </select>
 
     <insert id="save" parameterType="com.sb.auto.model.UserEntity">
-        INSERT INTO `admindb`.`USER` (`USER_ID`, `USER_PW`, `USER_ROLE`, `USER_NAME`, `PHONE`, `POINT`) VALUES
+        INSERT INTO `MAINDB`.`USER` (`USER_ID`, `USER_PW`, `USER_ROLE`, `USER_NAME`, `PHONE`, `POINT`) VALUES
         (#{userId}, #{userPw}, #{userRole}, #{userName}, #{phone}, #{point});
     </insert>
+
+    <update id="updateUser" parameterType="com.sb.auto.model.UserEntity">
+    </update>
+
 
 </mapper>

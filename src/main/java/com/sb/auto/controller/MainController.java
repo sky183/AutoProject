@@ -6,7 +6,6 @@ import com.sb.auto.mapper.JpaRepository;
 import com.sb.auto.model.UserEntity;
 import com.sb.auto.service.SampleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,11 +17,15 @@ import java.util.concurrent.Callable;
 @Controller
 public class MainController {
 
-    @Autowired
     SampleService sampleService;
 
-    @Autowired
     JpaRepository jpaRepository;
+
+    @Autowired
+    public MainController(SampleService sampleService, JpaRepository jpaRepository) {
+        this.sampleService = sampleService;
+        this.jpaRepository = jpaRepository;
+    }
 
     @GetMapping("/")
     public String index(Model model, @CurrentUser UserEntity userEntity) {
@@ -34,20 +37,19 @@ public class MainController {
 
         return "index";
     }
-    //@PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/dashboard")
     public String dashboard(Model model, Principal principal) {
         model.addAttribute("message", "Hello " + principal.getName());
         sampleService.dashboard();
         return "dashboard";
     }
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+//    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/admin")
     public String admin(Model model, Principal principal) {
         model.addAttribute("message", "Hello Admin, " + principal.getName());
         return "admin";
     }
-    @PreAuthorize("hasRole('ROLE_USER')")
+//    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/user")
     public String user(Model model, Principal principal) {
         model.addAttribute("message", "Hello User, " + principal.getName());

@@ -1,4 +1,4 @@
-package com.sb.auto.config;
+package com.sb.auto.config.security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.AccessDecisionManager;
