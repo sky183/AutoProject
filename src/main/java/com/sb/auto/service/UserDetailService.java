@@ -1,21 +1,20 @@
 package com.sb.auto.service;
 
-import com.sb.auto.mapper.CustomJpaRepository;
+import com.sb.auto.mapper.JpaRepository;
 import com.sb.auto.mapper.MemberMapper;
 import com.sb.auto.model.UserEntity;
-import com.sb.auto.security.UserAccount;
+import com.sb.auto.security.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CustomUserDetailService implements UserDetailsService {
+public class UserDetailService implements org.springframework.security.core.userdetails.UserDetailsService {
 
     @Autowired
-    CustomJpaRepository customJpaRepository;
+    JpaRepository jpaRepository;
 
     @Autowired
     MemberMapper memberMapper;
@@ -31,17 +30,17 @@ public class CustomUserDetailService implements UserDetailsService {
      */
     @Override
     public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
-//        UserEntity userEntity = customJpaRepository.findByUserId(userId);
+//        UserEntity userEntity = jpaRepository.findByUserId(userId);
         UserEntity userEntity = memberMapper.findByUserId(userId);
         if (userEntity == null) {
             throw new UsernameNotFoundException(userId);
         }
-        return new UserAccount(userEntity);
+        return new User(userEntity);
     }
 
     public UserEntity insertUser(UserEntity userEntity) {
         userEntity.encodePassword(passwordEncoder);
-//        return this.customJpaRepository.save(userEntity);
+//        return this.jpaRepository.save(userEntity);
         this.memberMapper.save(userEntity);
         return userEntity;
     }

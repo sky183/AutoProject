@@ -1,7 +1,7 @@
 package com.sb.auto.security;
 
 import com.sb.auto.model.UserEntity;
-import com.sb.auto.service.CustomUserDetailService;
+import com.sb.auto.service.UserDetailService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ public class UserEntityControllerTest {
     MockMvc mockMvc;
 
     @Autowired
-    CustomUserDetailService customUserDetailService;
+    UserDetailService userDetailService;
 
     @Test
     @WithAnonymousUser
@@ -96,9 +96,9 @@ public class UserEntityControllerTest {
     private UserEntity createUser(String username, String password) {
         UserEntity userEntity = new UserEntity();
         userEntity.setUserId(username);
-        userEntity.setUserPassword(password);
+        userEntity.setUserPw(password);
         userEntity.setUserRole("USER");
-        return customUserDetailService.insertUser(userEntity);
+        return userDetailService.insertUser(userEntity);
     }
 
 }

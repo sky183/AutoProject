@@ -18,7 +18,7 @@ public class CollectionsUtilTest {
         UserEntity userEntity1 = new UserEntity();
         userEntity.setUserRole("ADMIN");
         userEntity.setUserId("sky183");
-        userEntity.setUserPassword("1");
+        userEntity.setUserPw("1");
         userEntity.setPhone("010");
         userEntity.setPoint(20000);
         userEntity.setUserName("김성범");
@@ -27,7 +27,7 @@ public class CollectionsUtilTest {
         Map<String, Object> map = new HashMap<>();
         map.put("USER_ROLE", "USER");
         map.put("USER_ID", "sky183");
-        map.put("USER_PASSWORD", "1");
+        map.put("USER_PW", "1");
         map.put("PHONE", "010");
         map.put("POINT", 20000);
         map.put("USER_NAME", "김성범");

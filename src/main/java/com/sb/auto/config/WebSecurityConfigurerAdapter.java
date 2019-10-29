@@ -1,6 +1,6 @@
 package com.sb.auto.config;
 
-import com.sb.auto.service.CustomUserDetailService;
+import com.sb.auto.service.UserDetailService;
 import com.sb.auto.common.LoggingFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
@@ -12,7 +12,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;
@@ -20,10 +19,10 @@ import org.springframework.security.web.context.request.async.WebAsyncManagerInt
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfigurerAdapter extends org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter {
 
     @Autowired
-    CustomUserDetailService customUserDetailService;
+    UserDetailService userDetailService;
 
     /**
      * 권한 계층 설정
@@ -58,10 +57,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //로그인 페이지(모든 사용자 접근 가능)
         http.formLogin()
                 .loginPage("/login")
+                .usernameParameter("userId")
+                .passwordParameter("userPw")
                 .permitAll();
 
         http.rememberMe()
-                .userDetailsService(customUserDetailService)
+                .userDetailsService(userDetailService)
                 .key("remember-me-sample");
 
         http.httpBasic();
@@ -78,8 +79,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.exceptionHandling()
                 .accessDeniedHandler((request, response, accessDeniedException) -> {
                     UserDetails principal = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-                    String username = principal.getUsername();
-                    System.out.println(username + " is denied to access " + request.getRequestURI());
+                    String userId = principal.getUsername();
+                    System.out.println(userId + " is denied to access " + request.getRequestURI());
                     response.sendRedirect("/access-denied");
                 });
 

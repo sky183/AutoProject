@@ -1,6 +1,6 @@
 package com.sb.auto.etc;
 
-import com.sb.auto.service.CustomUserDetailService;
+import com.sb.auto.service.UserDetailService;
 import com.sb.auto.model.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class DefaultDataGenerator implements ApplicationRunner {
 
     @Autowired
-    CustomUserDetailService customUserDetailService;
+    UserDetailService userDetailService;
 
 /*    @Autowired
     BookRepository bookRepository;*/
@@ -34,8 +34,8 @@ public class DefaultDataGenerator implements ApplicationRunner {
     private UserEntity createUser(String usename) {
         UserEntity userEntity = new UserEntity();
         userEntity.setUserId(usename);
-        userEntity.setUserPassword("123");
+        userEntity.setUserPw("123");
         userEntity.setUserRole("USER");
-        return customUserDetailService.insertUser(userEntity);
+        return userDetailService.insertUser(userEntity);
     }
 }

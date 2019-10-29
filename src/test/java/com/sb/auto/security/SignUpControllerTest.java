@@ -35,11 +35,13 @@ public class SignUpControllerTest {
     @Test
     public void processSignUp() throws Exception {
         mockMvc.perform(post("/signup")
-                .param("username", "keesun")
-                .param("password", "123")
+                .param("userId", "sky183333")
+                .param("userPw", "1")
+                .param("userName", "김성범")
+                .param("phone", "0107288")
                 .with(csrf())) //Post 요청의 경우 csrf 토큰을 같이 전송해야 테스트 성공한다.
                 .andDo(print())
-                .andExpect(status().is3xxRedirection());
+                .andExpect(status().isOk());
     }
 
 }

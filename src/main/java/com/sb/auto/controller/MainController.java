@@ -2,7 +2,7 @@ package com.sb.auto.controller;
 
 import com.sb.auto.common.annotation.CurrentUser;
 import com.sb.auto.common.util.SecurityLogger;
-import com.sb.auto.mapper.CustomJpaRepository;
+import com.sb.auto.mapper.JpaRepository;
 import com.sb.auto.model.UserEntity;
 import com.sb.auto.service.SampleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class MainController {
     SampleService sampleService;
 
     @Autowired
-    CustomJpaRepository customJpaRepository;
+    JpaRepository jpaRepository;
 
     @GetMapping("/")
     public String index(Model model, @CurrentUser UserEntity userEntity) {

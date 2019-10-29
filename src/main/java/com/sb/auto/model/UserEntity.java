@@ -19,7 +19,7 @@ public class UserEntity {
     @Column(unique = true)
     private String userId;
 
-    private String userPassword;
+    private String userPw;
 
     private String userRole;
 
@@ -30,6 +30,6 @@ public class UserEntity {
     private int point;
 
     public void encodePassword(PasswordEncoder passwordEncoder) {
-        this.userPassword = passwordEncoder.encode(this.userPassword);
+        this.userPw = passwordEncoder.encode(this.userPw);
     }
 }

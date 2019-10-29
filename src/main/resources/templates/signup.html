@@ -10,7 +10,7 @@
     </div>
     <form action="/signup" th:action="@{/signup}" th:object="${userEntity}" method="post">
         <p>Id: <input type="text" th:field="*{userId}" /></p>
-        <p>Password: <input type="password" th:field="*{userPassword}" /></p>
+        <p>Password: <input type="password" th:field="*{userPw}" /></p>
         <p>Name: <input type="text" th:field="*{userName}" /></p>
         <p>Phone: <input type="tel" th:field="*{phone}" /></p>
         <p><input type="submit" value="SignUp" /></p>

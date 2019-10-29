@@ -2,7 +2,7 @@ package com.sb.auto.controller;
 
 import com.sb.auto.common.annotation.CurrentUser;
 import com.sb.auto.model.UserEntity;
-import com.sb.auto.service.CustomUserDetailService;
+import com.sb.auto.service.UserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,12 +17,12 @@ import java.security.Principal;
 public class AccountController {
 
     @Autowired
-    CustomUserDetailService customUserDetailService;
+    UserDetailService userDetailService;
 
-    @GetMapping("/account/{userRole}/{userId}/{userPassword}")
+    @GetMapping("/account/{userRole}/{userId}/{userPw}")
     @ResponseBody
     public UserEntity createAccount(@ModelAttribute UserEntity userEntity) {
-        return customUserDetailService.insertUser(userEntity);
+        return userDetailService.insertUser(userEntity);
     }
 
     @GetMapping("/login")
@@ -46,7 +46,7 @@ public class AccountController {
     public UserEntity processSignUp(@ModelAttribute UserEntity userEntity) {
         userEntity.setUserRole("USER");
 //        return "redirect:/";
-        return customUserDetailService.insertUser(userEntity);
+        return userDetailService.insertUser(userEntity);
     }
 
     @GetMapping("/access-denied")
