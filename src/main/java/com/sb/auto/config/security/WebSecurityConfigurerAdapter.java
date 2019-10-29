@@ -108,6 +108,7 @@ public class WebSecurityConfigurerAdapter extends org.springframework.security.c
 
         //세션 관리
         http.sessionManagement()
+                .sessionFixation().migrateSession()
                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED) //세션을 만들지 여부(IF_REQUIRED가 기본이므로 세팅 안해도 됨)
                 .invalidSessionUrl("/login") //유효하지 않은 세션의 경우 로그인 페이지로
                 .maximumSessions(1) //최대 접속 가능 세션
@@ -123,6 +124,10 @@ public class WebSecurityConfigurerAdapter extends org.springframework.security.c
                     response.sendRedirect("/");
                 }); //기존 세션 종료시 세션및 쿠키삭제 후 URL 이동
 //                .expiredUrl("/login");//기존 세션 종료시 이동할 URL
+
+        // TODO : HttpSessionEventPublisher 동시성 제어를 위해 추가해야하는지 확인
+
+
 
         // TODO ExceptionTranslatorFilter - FilterSecurityInterceptor (AccessDecisionManager, AffirmativeBased)
         // TODO AuthenticationException -> AuthenticationEntryPoint
