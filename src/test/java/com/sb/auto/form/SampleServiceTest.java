@@ -35,11 +35,13 @@ public class SampleServiceTest {
         userEntity.setUserPw("123");
         userDetailService.insertUser(userEntity);
 
+        // DB에서 조회 후 Principal 객체를 반환한다.
         UserDetails userDetails = userDetailService.loadUserByUsername("keesun");
-
+        // 비번 확인하여 token을 만든다.
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userDetails, "123");
+        // AuthenticationManager에서  token으로 인증을 하여 Authentication을 반환
         Authentication authentication = authenticationManager.authenticate(token);
-
+        // SecurityContextHolder 에 Authentication을
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         sampleService.dashboard();

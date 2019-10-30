@@ -43,13 +43,11 @@ public class MainController {
         sampleService.dashboard();
         return "dashboard";
     }
-//    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/admin")
     public String admin(Model model, Principal principal) {
         model.addAttribute("message", "Hello Admin, " + principal.getName());
         return "admin";
     }
-//    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/user")
     public String user(Model model, Principal principal) {
         model.addAttribute("message", "Hello User, " + principal.getName());

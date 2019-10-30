@@ -18,7 +18,7 @@ public class UserDetailService implements org.springframework.security.core.user
     MemberMapper memberMapper;
 
     PasswordEncoder passwordEncoder;
-    
+
     @Autowired
     public UserDetailService(JpaRepository jpaRepository, MemberMapper memberMapper, PasswordEncoder passwordEncoder) {
         this.jpaRepository = jpaRepository;
@@ -27,7 +27,7 @@ public class UserDetailService implements org.springframework.security.core.user
     }
 
     /**
-     * Principal 객체 반환
+     * Principal 객체 반환 - 메서드에서 주입받는 Principal 은 여기서 반환하는 객체이다.
      * @param userId
      * @return
      * @throws UsernameNotFoundException

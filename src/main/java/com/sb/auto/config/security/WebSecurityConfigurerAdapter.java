@@ -51,6 +51,10 @@ public class WebSecurityConfigurerAdapter extends org.springframework.security.c
         return handler;
     }
 
+    /**
+     * 기본 로그인 페이지의 응답을 SecurityFilter에 걸리지 않도록 설정
+     * @param web
+     */
     @Override
     public void configure(WebSecurity web) {
         web.ignoring().requestMatchers(PathRequest.toStaticResources().atCommonLocations());
@@ -58,12 +62,13 @@ public class WebSecurityConfigurerAdapter extends org.springframework.security.c
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        //필터 추가
         http.addFilterBefore(new LoggingFilter(), WebAsyncManagerIntegrationFilter.class);
 
         //권한 부여
         http.authorizeRequests() //fullyAuthenticated() - 중요한 요청에는 자동 로그인 했어도 인증요구를 한다.
                 .mvcMatchers("/admin").access("isFullyAuthenticated() and hasRole('ADMIN')")
-                .expressionHandler(expressionHandler());
+                .expressionHandler(expressionHandler()); //AccessDecisionManager 에서 voters를 설정하여 권한 계층을 설정해준다.
         http.authorizeRequests()
                 .mvcMatchers("/", "/signup").permitAll()
                 .mvcMatchers("/user", "/dashboard").hasRole("USER")
@@ -108,7 +113,7 @@ public class WebSecurityConfigurerAdapter extends org.springframework.security.c
 
         //세션 관리
         http.sessionManagement()
-                .sessionFixation().migrateSession()
+//                .sessionFixation().newSession()
                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED) //세션을 만들지 여부(IF_REQUIRED가 기본이므로 세팅 안해도 됨)
                 .invalidSessionUrl("/login") //유효하지 않은 세션의 경우 로그인 페이지로
                 .maximumSessions(1) //최대 접속 가능 세션

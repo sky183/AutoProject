@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 
 /**
  * 현재 유저를 파라미터로 받아올 수 있는 애노테이션
- * 현재 유저가 익명이 아닌 경우 userEntity를 가져온다
+ * 현재 유저가 익명이 아닌 경우 userEntity(doamin 객체)를 직접 가져온다
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.PARAMETER)

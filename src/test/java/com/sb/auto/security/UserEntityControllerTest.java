@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@AutoConfigureMockMvc
+@AutoConfigureMockMvc //가상의 인증된 유저 또는 인증되지 않은 유저로 사용 가능
 public class UserEntityControllerTest {
 
     @Autowired

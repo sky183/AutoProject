@@ -8,6 +8,9 @@ import org.springframework.security.access.vote.RoleHierarchyVoter;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration;
 
+/**
+ * 메서드에 @Secured({"ROLE_USER", "ROLE_ADMIN"}), @PreAuthorize("hasRole('ROLE_USER')") 등으로 권한 확인하는 설정
+ */
 @Configuration
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true, jsr250Enabled = true)
 public class MethodSecurityConfig extends GlobalMethodSecurityConfiguration {
