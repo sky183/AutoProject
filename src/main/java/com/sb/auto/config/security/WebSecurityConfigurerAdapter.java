@@ -52,7 +52,7 @@ public class WebSecurityConfigurerAdapter extends org.springframework.security.c
     }
 
     /**
-     * 기본 로그인 페이지의 응답을 SecurityFilter에 걸리지 않도록 설정
+     * 정적 자원 요청을 ecurityFilter에 걸리지 않도록 설정
      * @param web
      */
     @Override
