@@ -52,12 +52,13 @@ public class WebSecurityConfigurerAdapter extends org.springframework.security.c
     }
 
     /**
-     * 정적 자원 요청을 ecurityFilter에 걸리지 않도록 설정
+     * 정적 자원 요청을 securityFilter에 걸리지 않도록 설정
      * @param web
      */
     @Override
     public void configure(WebSecurity web) {
-        web.ignoring().requestMatchers(PathRequest.toStaticResources().atCommonLocations());
+        web.ignoring().requestMatchers(PathRequest.toStaticResources().atCommonLocations())
+                .antMatchers("/css/**", "/js/**", "/img/**", "/bootstrap/**", "/static/**");
     }
 
     @Override

@@ -9,8 +9,8 @@
     </select>
 
     <insert id="save" parameterType="com.sb.auto.model.UserEntity">
-        INSERT INTO `MAINDB`.`USER` (`USER_ID`, `USER_PW`, `USER_ROLE`, `USER_NAME`, `PHONE`, `POINT`) VALUES
-        (#{userId}, #{userPw}, #{userRole}, #{userName}, #{phone}, #{point});
+        INSERT INTO `MAINDB`.`USER` (`USER_ID`, `USER_PW`, `USER_ROLE`, `USER_NAME`, `EMAIL`, `PHONE`, `POINT`) VALUES
+        (#{userId}, #{userPw}, #{userRole}, #{userName}, #{email}, #{phone}, #{point});
     </insert>
 
     <update id="updateUser" parameterType="com.sb.auto.model.UserEntity">

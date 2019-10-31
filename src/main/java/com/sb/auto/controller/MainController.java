@@ -30,9 +30,9 @@ public class MainController {
     @GetMapping("/")
     public String index(Model model, @CurrentUser UserEntity userEntity) {
         if (userEntity == null) {
-            model.addAttribute("message", "Hello Spring Security");
+            model.addAttribute("message", "메인 페이지입니다.");
         } else {
-            model.addAttribute("message", "Hello, " + userEntity.getUserId());
+            model.addAttribute("message", userEntity.getUserName() + "님 안녕하세요.");
         }
 
         return "index";
