@@ -11,6 +11,7 @@
     <groupId>com.sb</groupId>
     <artifactId>auto</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>war</packaging>
     <name>auto</name>
     <description>Auto project for Spring Boot</description>
 

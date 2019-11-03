@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>폰북</title>
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1,maximum-scale=1, user-scalable=no" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge"> <!-- JQUERY IE -->
+
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<link rel="stylesheet" href="pbstyle.css" type="text/css" />
+  
+</head>
+<body>
+	<!--  메인 페이지  -->
+	<div data-role="page" id="main">
+		<div data-role="content" id="wrap">
+			<div class="m_tit">
+				<div class="bgcir">
+					<p>MY</p><p>SECRET</p>
+				</div>
+				<h1>PHONEBOOK</h1>
+			</div>
+			
+
+			
+			<a href="#book" data-role="button" class="ui-btn ui-corner-all" id="main_start_btn">시작하기</a>
+			<span> VER. 1.1</span>
+		</div>
+	</div>
+	<!--  메인 끝  -->
+
+
+
+
+
+
+
+
+
+	<!-- 폰북 페이지 -->
+	<div data-role="page" id="book">
+		<!-- 패널 시작 -->
+		<div data-role="panel" id="panel1" data-position="left"	data-display="overlay">
+			<div class="pn_info">
+				<img src="img/photo.jpg">
+				<h3>Name</h3>
+				<p>010-1111-2222</p>
+				<p>test@gmail.com</p>
+				
+			</div>
+			<div class="pn_ul">
+				<a href="#book"
+					class="ui-input-btn ui-btn ui-icon-grid ui-btn-icon-left ui-nodisc-icon ui-alt-icon"
+					data-transition="slide" data-rel="close"><span>목록보기</span><span
+					class="ui-li-count">52</span></a> <a href="#write"
+					class="ui-input-btn ui-btn ui-icon-plus ui-btn-icon-left ui-nodisc-icon ui-alt-icon"
+					data-transition="slide" data-rel="close"><span>새 연락처 추가</span></a>
+				<a href="#set_view"
+					class="ui-input-btn ui-btn ui-icon-edit ui-btn-icon-left ui-nodisc-icon ui-alt-icon"
+					data-transition="slide" data-rel="close"><span>연락처 목록 편집</span></a>
+				<a href="#gr_view"
+					class="ui-input-btn ui-btn ui-icon-user ui-btn-icon-left ui-nodisc-icon ui-alt-icon"
+					data-transition="slide" data-rel="close"><span>그룹 편집</span></a>
+				
+				
+			</div>
+
+		</div>
+		<!--  패널 끝 -->
+
+		<!-- 메인 헤더 시작 -->
+		<div data-role="header" data-position="fixed" id="book_header" class="header">
+			<h1 class="title_toggle">PHONEBOOK</h1> 
+			<a href="#panel1" class="ui-btn ui-icon-bars ui-btn-icon-left ui-nodisc-icon ui-btn-icon-notext" data-transition="slide">OPEN</a> 
+			<a href="#write" class="ui-btn ui-icon-plus ui-btn-icon-right ui-nodisc-icon ui-btn-icon-notext" data-transition="slide">NEW WRITE</a>
+			<div data-role="navbar" class="toggle_mn">
+				<ul>
+					<li><a href="#" data-icon="grid">All</a></li>
+					<li><a href="#" data-icon="star">FAVORIT</a></li>
+					<li><a href="#" data-icon="alert">GROUP1</a></li>
+					<li><a href="#" data-icon="info">GROUP2</a></li>
+					<li><a href="#" data-icon="gear">GROUP3</a></li>
+				</ul>
+			</div>
+
+
+		</div>
+		<!-- 헤더 끝 -->
+
+
+		<div data-role="content" id="main_content">
+			<div id="sorter">
+				<ul data-role="listview">
+					<li><span>#</span></li>
+					<li><span>ㄱ</span></li>
+					<li><span>ㄴ</span></li>
+					<li><span>ㄷ</span></li>
+					<li><span>ㄹ</span></li>
+					<li><span>ㅁ</span></li>
+					<li><span>ㅂ</span></li>
+					<li><span>ㅅ</span></li>
+					<li><span>ㅇ</span></li>
+					<li><span>ㅈ</span></li>
+					<li><span>ㅊ</span></li>
+					<li><span>ㅋ</span></li>
+					<li><span>ㅌ</span></li>
+					<li><span>ㅍ</span></li>
+					<li><span>ㅎ</span></li>
+
+					<li><span>A</span></li>
+					<li><span>B</span></li>
+					<li><span>C</span></li>
+					<li><span>D</span></li>
+					<li><span>E</span></li>
+					<li><span>F</span></li>
+					<li><span>G</span></li>
+					<li><span>H</span></li>
+					<li><span>I</span></li>
+					<li><span>J</span></li>
+					<li><span>K</span></li>
+					<li><span>L</span></li>
+					<li><span>M</span></li>
+					<li><span>N</span></li>
+					<li><span>O</span></li>
+					<li><span>P</span></li>
+					<li><span>Q</span></li>
+					<li><span>R</span></li>
+					<li><span>S</span></li>
+					<li><span>T</span></li>
+					<li><span>U</span></li>
+					<li><span>V</span></li>
+					<li><span>W</span></li>
+					<li><span>X</span></li>
+					<li><span>Y</span></li>
+					<li><span>Z</span></li>
+
+				</ul>
+			</div>
+			<ul data-role="listview" data-inset="true" data-filter="true"
+				data-autodividers="ture" id="sortedList">
+				<li><a href="#info"
+					class="ui-btn ui-icon-carat-r ui-btn-icon-right"
+					data-transition="pop"> <img src="47.jpg" />
+						<h3>Aron</h3>
+						<p>010-9999-8888</p> <span data-icon="carat-r"></span>
+				</a></li>
+				<li><a href="#" data-transition="slide"> 
+						<img>
+						<h3>Adam</h3>
+						<p></p> <span data-icon="carat-r"></span>
+				</a></li>
+				<li><a href="#" data-transition="slide"> 
+						<img>
+						<h3>Alexander</h3>
+						<p></p> <span data-icon="carat-r"></span>
+				</a></li>
+				<li><a href="#" data-transition="slide"> 
+						<img>
+						<h3>Alice</h3>
+						<p></p> <span data-icon="carat-r"></span>
+				</a></li>
+				<li><a href="#" data-transition="slide"> 
+						<img>
+						<h3>Andrew</h3>
+						<p></p> <span data-icon="carat-r"></span>
+				</a></li>
+				<li><a href="#" data-transition="slide"> 
+					<img>
+						<h3>Anna</h3>
+						<p></p> <span data-icon="carat-r"></span>
+				</a></li>
+				<li><a href="#" data-transition="slide"> <img>
+						<h3>Anthony</h3>
+						<p></p> <span data-icon="carat-r"></span>
+				</a></li>
+				<li><a href="#" data-transition="slide"> <img>
+						<h3>Betty</h3>
+						<p></p> <span data-icon="carat-r"></span>
+				</a></li>
+			</ul>
+		</div>
+	</div>
+	<!-- 폰북 페이지 끝  -->
+
+
+
+	<!-- 상세보기 관리 페이지 -->
+	<div data-role="page" id="info">
+		<!-- 메인 헤더 시작 -->
+		<div data-role="header" id="info_header" class="header">
+			<a href="#book"
+				class="ui-input-btn ui-btn ui-icon-carat-l ui-btn-icon-left ui-nodisc-icon ui-corner-all ui-btn-icon-notext"
+				data-transition="slide" data-rel="back">BACK</a>
+			<h1>Aron</h1>
+			<!-- <a href="#" data-icon="edit" data-iconpos="notext" data-position="right" data-mini="true" data-transition="slide" class="ui-alt-icon ui-nodisc-icon ui-corner-all">E</a>  -->
+		</div>
+		<!-- 헤더 끝 -->
+
+		<!-- 상세화면 -->
+		<div data-role="content" id="info_content">
+			<div class="info_user">
+				<img src="47.jpg">
+			</div>	
+			<div data-role="fieldcontain" class="info_main">
+				<label for="name_info">이름</label>
+				<input type="text" id="name_info" name="name_info" value="Aron">
+			
+				
+<!--  				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<a href="#" data-role="button">EDIT</a>
+					</div>
+					<div class="ui-block-b">
+						<a href="#delete_check" data-rel="popup" data-position-to="window"
+							data-transition="pop"
+							class="ui-btn ui-corner-all ui-shadow ui-icon-delete ui-btn-icno-notext">DELETE</a>
+					</div>
+					<div data-role="popup" id="delete_check" data-role="button"
+						data-overlay-theme="a" data-theme="a" data-dismissible="false"
+						style="max-width: 320px;">
+						<div role="main" class="ui-content">
+							<h3>정말 삭제하시겠습니까?</h3>
+							<a href="#"
+								class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-a"
+								data-rel="back">CANCEL</a> <a href="#"
+								class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b"
+								data-rel="back" data-transition="flow">DELETE</a>
+
+						</div>
+					</div>
+				</div>  -->
+
+				<label for="phone_info">전화번호</label> <input type="text"
+					id="phone_info" name="phone_info" value="010-0000-0000"> <label
+					for="birth_info">생일</label> <input type="text" id="birth_info"
+					name="birth_info" value="1990.10.10"> <label
+					for="email_info">이메일</label> <input type="text" id="email_info"
+					name="email_info" value="email@email.com"> <label
+					for="info_group_select">그룹</label> <select id="info_group_select" data-mini="true">
+					<option>가족</option>
+					<option>대학</option>
+					<option>가족</option>
+					<option>카페</option>
+				</select>
+
+
+			</div>
+
+		</div>
+		
+		<div data-role="footer" id="info_footer" data-theme="b" class="ui-grid-a" data-position="fixed">
+				<div class="ui-block-a">
+					<a href="#info_edit" class="ui-btn" data-rel="popup" data-position-to="window" data-transition="pop">수정</a>
+					
+				</div>
+				<div data-role="popup" id="info_edit" data-role="button" data-overlay-theme="a" data-theme="a" data-dismissible="false" stype="max-width:320px;">
+					<div role="main" class="ui-content">
+						<h5>수정 하시겠습니까?</h5>
+						<a href="#"
+								class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-a"
+								data-rel="back">CANCEL</a> <a href="#"
+								class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b"
+								data-rel="back" data-transition="flow">OK</a>
+					</div>
+				</div>
+				
+				
+				
+				<div class="ui-block-b">
+					<a href="#info_delete" class="ui-btn" data-rel="popup" data-position-to="window"
+							data-transition="pop">삭제</a>
+				</div>
+				<div data-role="popup" id="info_delete" data-role="button"
+						data-overlay-theme="a" data-theme="a" data-dismissible="false"
+						style="max-width: 320px;">
+						<div role="main" class="ui-content">
+							<h5>정말 삭제하시겠습니까?</h5>
+							<a href="#"
+								class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-a"
+								data-rel="back">CANCEL</a> <a href="#"
+								class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b"
+								data-rel="back" data-transition="flow">DELETE</a>
+
+						</div>
+					</div>
+			</div>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!--  연락처 추가 페이지  -->
+	<div data-role="page" id="write">
+		<!-- 패널 시작 -->
+		<div data-role="panel" id="panel2" data-position="left"
+			data-display="overlay">
+			<div class="pn_info">
+				<img src="img/photo.jpg">
+				<h3>Name</h3>
+				<p>010-9999-8888</p>
+				<p>test@gmail.com</p>
+				<div class="filter"></div>
+			</div>
+			<div class="pn_ul">
+				<a href="#book"
+					class="ui-input-btn ui-btn ui-icon-grid ui-btn-icon-left ui-nodisc-icon ui-alt-icon"
+					data-transition="slide" data-rel="close"><span>목록보기</span><span
+					class="ui-li-count">52</span></a> 
+				<a href="#"
+					class="ui-input-btn ui-btn ui-icon-plus ui-btn-icon-left ui-nodisc-icon ui-alt-icon"
+					data-transition="slide" data-rel="close"><span>새 연락처 추가</span></a>
+				<a href="#set_view"
+					class="ui-input-btn ui-btn ui-icon-edit ui-btn-icon-left ui-nodisc-icon ui-alt-icon"
+					data-transition="slide" data-rel="close"><span>연락처 목록 편집</span></a>
+				<a href="#gr_view"
+					class="ui-input-btn ui-btn ui-icon-user ui-btn-icon-left ui-nodisc-icon ui-alt-icon"
+					data-transition="slide" data-rel="close"><span>그룹 편집</span></a>
+
+			</div>
+
+		</div>
+		<!--  패널 끝 -->
+
+		<!-- 헤더 시작 -->
+		<div data-role="header" data-position="fixed" id="write_header" class="header">
+			<h1 class="title_toggle">PHONEBOOK</h1>
+			<a href="#panel2" class="ui-btn ui-icon-bars ui-btn-icon-left ui-nodisc-icon ui-btn-icon-notext" data-transition="slide">OPEN</a> 
+			<a href="#write" class="ui-btn ui-icon-plus ui-btn-icon-right ui-nodisc-icon ui-btn-icon-notext" data-transition="slide">NEW WRITE</a>
+			<div data-role="navbar" class="toggle_mn">
+				<ul>
+					<li><a href="#" data-icon="grid">All</a></li>
+					<li><a href="#" data-icon="star">FAVORIT</a></li>
+					<li><a href="#" data-icon="alert">GROUP1</a></li>
+					<li><a href="#" data-icon="info">GROUP2</a></li>
+					<li><a href="#" data-icon="gear">GROUP3</a></li>
+				</ul>
+			</div>
+
+
+		</div>
+		<!-- 헤더 끝 -->
+
+		<!-- 연락처 컨텐츠 -->
+		<div data-role="content" id="write_content">
+			<div class="add_user">
+				<img src="img/add-user.png">
+			</div>
+
+			<div data-role="fieldcontain" class="add_main">
+				<label for="add_name">이름</label> 
+				<input type="text" id="add_name"> 
+				<label for="add_phone">전화번호</label>
+				<input type="text" id="add_phone" name="add_phone">
+				<label for="add_birth">생일</label>
+				<input type="text" id="add_birth" name="add_birth"> 
+				<label for="add_email">이메일</label>
+				<input type="text" id="add_email" name="add_email">
+				<label for="add_group_select">그룹</label>
+				<select id="add_group_select" data-mini="true">
+					<option value="add_none">없음</option>
+					<option value="add_fam">가족</option>
+					<option value="add_univ">대학</option>
+					<option value="add_comp">회사</option>
+					<option value="add_club">동호회</option>
+				</select>
+			</div>
+			<div data-role="fieldcontain" class="add_main" id="add_fam">	
+					<label for="add_anv">기념일</label>
+					<input type="text" id="add_anv" name="add_anv">
+			</div>	
+
+			<div data-role="fieldcontain" class="add_main" id="add_univ">
+					<label for="add_univ_major">전공</label> <input type="text"
+						id="add_univ_major" name="add_univ_major"> <label
+						for="add_univ_grade">학년</label> <input type="text"
+						id="add_univ_grade" name="adD_univ_grade">
+			</div>	
+
+
+			<div data-role="fieldcontain" class="add_main" id="add_comp">	
+					<label for="add_comp_name">회사이름</label> <input type="text"
+						id="add_comp_name" name="add_comp_name"> <label
+						for="add_dept">부서명</label> <input type="text" id="add_dept"
+						name="add_dept">
+			</div>	
+
+			<div data-role="fieldcontain" class="add_main" id="add_club">	
+					<label for="add_cafe">동호회</label> <input type="text" id="add_cafe"
+						name="add_cafe"> <label for="add_cafe_nick">별명</label> <input
+						type="text" id="add_cafe_nick" name="add_cafe_nick">
+			</div>	
+
+
+			
+
+		</div>
+		<!--  연락처 푸터 -->
+		<div data-role="footer" id="write_footer" data-theme="b" class="ui-grid-a" data-position="fixed">
+				<div class="ui-block-a">
+					<a href="#add_cancel" class="ui-btn" data-rel="popup" data-position-to="window" data-transition="pop">취소</a>
+					
+				</div>
+				<div data-role="popup" id="add_cancel" data-role="button" data-overlay-theme="a" data-theme="a" data-dismissible="false" stype="max-width:320px;">
+					<div role="main" class="ui-content">
+						<h5>취소 하시겠습니까?</h5>
+						<a href="#"
+								class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-a"
+								data-rel="back">CANCEL</a> <a href="#book"
+								class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b"
+								data-transition="slide">OK</a>
+					</div>
+				</div>
+				
+				
+				
+				<div class="ui-block-b">
+					<a href="#set_delete_check" class="ui-btn" data-rel="popup" data-position-to="window"
+							data-transition="pop">저장</a>
+				</div>
+				<div data-role="popup" id="set_delete_check" data-role="button"
+						data-overlay-theme="a" data-theme="a" data-dismissible="false"
+						style="max-width: 320px;">
+  					<div data-role="main" class="ui-content" id="name_check">
+							<h5></h5>
+							<a href="#"
+								class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-a"
+								data-rel="back" id="add_ok">OK</a>
+
+						</div> 
+					</div>
+			</div>
+
+	</div>
+	<!-- 연락처 추가 끝  -->
+
+
+
+
+
+
+
+
+
+	<!--  목록관리 -->
+	<div data-role="page" id="set_view">
+		<!-- 패널 시작 -->
+		<div data-role="panel" id="panel3" data-position="left"
+			data-display="overlay">
+			<div class="pn_info">
+				<img src="img/photo.jpg">
+				<h3>Name</h3>
+				<p>010-9999-8888</p>
+				<p>test@gmail.com</p>
+				<div class="filter"></div>
+			</div>
+			<div class="pn_ul">
+				<a href="#book"
+					class="ui-input-btn ui-btn ui-icon-grid ui-btn-icon-left ui-nodisc-icon ui-alt-icon"
+					data-transition="slide"><span>목록보기</span>
+					<span class="ui-li-count">52</span></a> 
+				<a href="#write"
+					class="ui-input-btn ui-btn ui-icon-plus ui-btn-icon-left ui-nodisc-icon ui-alt-icon"
+					data-transition="slide"><span>새 연락처 추가</span></a> 
+				<a href="#set_view"
+					class="ui-input-btn ui-btn ui-icon-edit ui-btn-icon-left ui-nodisc-icon ui-alt-icon"
+					data-transition="slide" data-rel="close"><span>연락처 목록 편집</span></a> 
+				<a href="#gr_view" class="ui-input-btn ui-btn ui-icon-user ui-btn-icon-left ui-nodisc-icon ui-alt-icon"
+					data-transition="slide"><span>그룹 편집</span></a>
+
+			</div>
+
+		</div>
+		<!--  패널 끝 -->
+
+		<!-- 헤더 시작 -->
+		<div data-role="header" data-position="fixed" id="set_header" class="header">
+			<h1 class="title_toggle">PHONEBOOK</h1>
+			<a href="#panel3" class="ui-btn ui-icon-bars ui-btn-icon-left ui-nodisc-icon ui-btn-icon-notext" data-transition="slide">OPEN</a> 
+			<a href="#write" class="ui-btn ui-icon-plus ui-btn-icon-right ui-nodisc-icon ui-btn-icon-notext" data-transition="slide">NEW WRITE</a>
+			<div data-role="navbar" class="toggle_mn">
+				<ul>
+					<li><a href="#" data-icon="grid">All</a></li>
+					<li><a href="#" data-icon="star">FAVORIT</a></li>
+					<li><a href="#" data-icon="alert">GROUP1</a></li>
+					<li><a href="#" data-icon="info">GROUP2</a></li>
+					<li><a href="#" data-icon="gear">GROUP3</a></li>
+				</ul>
+			</div>
+
+
+		</div>
+		<!-- 헤더 끝 -->
+
+
+		<div data-role="content" id="set_content">
+			<div id="sorter">
+				<ul data-role="listview">
+					<li><span>#</span></li>
+					<li><span>ㄱ</span></li>
+					<li><span>ㄴ</span></li>
+					<li><span>ㄷ</span></li>
+					<li><span>ㄹ</span></li>
+					<li><span>ㅁ</span></li>
+					<li><span>ㅂ</span></li>
+					<li><span>ㅅ</span></li>
+					<li><span>ㅇ</span></li>
+					<li><span>ㅈ</span></li>
+					<li><span>ㅊ</span></li>
+					<li><span>ㅋ</span></li>
+					<li><span>ㅌ</span></li>
+					<li><span>ㅍ</span></li>
+					<li><span>ㅎ</span></li>
+
+					<li><span>A</span></li>
+					<li><span>B</span></li>
+					<li><span>C</span></li>
+					<li><span>D</span></li>
+					<li><span>E</span></li>
+					<li><span>F</span></li>
+					<li><span>G</span></li>
+					<li><span>H</span></li>
+					<li><span>I</span></li>
+					<li><span>J</span></li>
+					<li><span>K</span></li>
+					<li><span>L</span></li>
+					<li><span>M</span></li>
+					<li><span>N</span></li>
+					<li><span>O</span></li>
+					<li><span>P</span></li>
+					<li><span>Q</span></li>
+					<li><span>R</span></li>
+					<li><span>S</span></li>
+					<li><span>T</span></li>
+					<li><span>U</span></li>
+					<li><span>V</span></li>
+					<li><span>W</span></li>
+					<li><span>X</span></li>
+					<li><span>Y</span></li>
+					<li><span>Z</span></li>
+
+				</ul>
+			</div>
+			<form id="checkbox_list">
+				<fieldset data-role="controlgroup listview" >	
+					<ul  data-role="listview" data-inset="true"  data-filter="true" data-autodividers="ture" id="sortedList">
+						<li><input type="checkbox" name="info_name" id="info_name1"> <label
+							for="info_name1"> <img src="47.jpg">
+								<h3>Aron</h3>
+						</label>
+						</li>
+						<li><input type="checkbox" name="info_name" id="info_name2"> <label
+							for="info_name2"> <img src="user2.png" class="hi">
+								<h3>Adam</h3>
+						</label></li>
+
+						<li><input type="checkbox" name="info_name" id="info_name3"> <label
+							for="info_name3"> <img src="user2.png">
+								<h3>Alexander</h3>
+						</label></li>
+
+						<li><input type="checkbox" name="info_name" id="info_name4"> <label
+							for="info_name4"> <img src="user2.png">
+								<h3>Alice</h3>
+						</label></li>
+						<li><input type="checkbox" name="info_name" id="info_name5"> <label
+							for="info_name5"> <img src="user2.png">
+								<h3>Andrew</h3>
+						</label></li>
+						<li><input type="checkbox" name="info_name" id="info_name6"> <label
+							for="info_name6"> <img src="user2.png">
+								<h3>Anna</h3>
+						</label></li>
+						<li><input type="checkbox" name="info_name" id="info_name7"> <label
+							for="info_name7"> <img src="user2.png">
+								<h3>Anthony</h3>
+						</label></li>
+						<li><input type="checkbox" name="info_name" id="info_name8"> <label
+							for="info_name8"> <img src="user2.png">
+								<h3>Betty</h3>
+						</label></li>
+						<li><input type="checkbox" name="info_name" id="info_name9"> <label
+							for="info_name9"> <img src="user2.png">
+								<h3>Cherry</h3>
+						</label></li>
+					</ul>
+
+				</fieldset>
+			</form>
+			
+			<div data-role="footer" id="set_footer" data-theme="b" class="ui-grid-a" data-position="fixed">
+								<div class="ui-block-b">
+					<a href="#set_delete" id="set_delete_btn" class="ui-btn" data-rel="popup" data-position-to="window"
+							data-transition="pop">연락처 삭제</a>
+				</div>
+					<a href="#set_groupping" id="set_group_btn" class="ui-btn" data-rel="popup" data-position-to="window" data-transition="pop">그룹지정</a>
+					
+				</div>
+				<div data-role="popup" id="set_groupping" data-role="button" data-overlay-theme="a" data-theme="a" data-dismissible="false" stype="max-width:320px;">
+					<div role="main" class="ui-content">
+						<h5>[::GROUP NAME::]<br> 설정하시겠습니까?</h5>
+						<a href="#"
+								class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-a"
+								data-rel="back">CANCEL</a> <a href="#"
+								class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b"
+								data-rel="back" data-transition="flow">OK</a>
+					</div>
+				</div>
+				
+				
+				
+				<div class="ui-block-b">
+					<a href="#set_delete" id="set_delete_btn" class="ui-btn" data-rel="popup" data-position-to="window"
+							data-transition="pop">연락처 삭제</a>
+				</div>
+				<div data-role="popup" id="set_delete" data-role="button"
+						data-overlay-theme="a" data-theme="a" data-dismissible="false"
+						style="max-width: 320px;">
+						<div role="main" class="ui-content">
+							<h5>정말 삭제하시겠습니까?</h5>
+							<a href="#"
+								class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-a"
+								data-rel="back">CANCEL</a> <a href="#"
+								class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b"
+								data-rel="back" data-transition="flow">DELETE</a>
+
+						</div>
+					</div>
+			</div>
+		</div>
+		</div>
+		<!--  목록 끝 -->
+
+		<!-- 그룹관리   -->
+		<div data-role="page" id="gr_view">
+			<!-- 패널 시작 -->
+			<div data-role="panel" id="panel4" data-position="left"
+				data-display="overlay">
+				<div class="pn_info">
+					<img src="img/photo.jpg">
+					<h3>Name</h3>
+					<p>010-9999-8888</p>
+					<p>test@gmail.com</p>
+					<div class="filter"></div>
+				</div>
+				<div class="pn_ul">
+					<a href="#book"
+						class="ui-input-btn ui-btn ui-icon-grid ui-btn-icon-left ui-nodisc-icon ui-alt-icon"
+						data-transition="slide" data-rel="close"><span>목록보기</span><span
+						class="ui-li-count">52</span></a> <a href="#write"
+						class="ui-input-btn ui-btn ui-icon-plus ui-btn-icon-left ui-nodisc-icon ui-alt-icon"
+						data-transition="slide" data-rel="close"><span>새 연락처 추가</span></a>
+					<a href="#set_view"
+						class="ui-input-btn ui-btn ui-icon-edit ui-btn-icon-left ui-nodisc-icon ui-alt-icon"
+						data-transition="slide" data-rel="close"><span>연락처 목록
+							편집</span></a>
+					<a href="#gr_view" class="ui-input-btn ui-btn ui-icon-user ui-btn-icon-left ui-nodisc-icon ui-alt-icon"
+						data-transition="slide" data-rel="close"><span>그룹 편집</span></a>
+
+				</div>
+
+			</div>
+			<!--  패널 끝 -->
+
+			<!-- 메인 헤더 시작 -->
+			<div data-role="header" data-position="fixed" id="group_header" class="header">
+				<h1 class="title_toggle">PHONEBOOK</h1>
+			<a href="#panel4" class="ui-btn ui-icon-bars ui-btn-icon-left ui-nodisc-icon ui-btn-icon-notext" data-transition="slide">OPEN</a> 
+			<a href="#write" class="ui-btn ui-icon-plus ui-btn-icon-right ui-nodisc-icon ui-btn-icon-notext" data-transition="slide">NEW WRITE</a>
+				<div data-role="navbar" class="toggle_mn">
+					<ul>
+						<li><a href="#" data-icon="grid">All</a></li>
+						<li><a href="#" data-icon="star">FAVORIT</a></li>
+						<li><a href="#" data-icon="alert">GROUP1</a></li>
+						<li><a href="#" data-icon="info">GROUP2</a></li>
+						<li><a href="#" data-icon="gear">GROUP3</a></li>
+					</ul>
+				</div>
+
+
+			</div>
+			<!-- 헤더 끝 -->
+
+
+			<div data-role="content" id="group_content">
+				<div data-role="fieldcontain" class="ui-grid-a">
+					<div class="ui-block-a">
+						<input type="text" name="group_add" value="그룹추가">
+					</div>
+					<div class="ui-block-b">
+						<input type="submit" data-icon="plus" data-mini="true" value="add"
+							class="ui-alt-icon ui-corner-all">
+					</div>
+				</div>
+				
+				<div data-role="list view">
+					<fieldset data-role="controlgroup">
+					<input type="checkbox" name="group_1" id="group_1">
+					<label for="group_1">즐겨찾기</label>
+					<input type="checkbox" name="group_2" id="group_2">
+					<label for="group_2">가족</label>
+					<input type="checkbox" name="group_3" id="group_3">
+					<label for="group_3">대학</label>
+					<input type="checkbox" name="group_4" id="group_4">
+					<label for="group_4">회사</label>
+					<input type="checkbox" name="group_5" id="group_5">
+					<label for="group_5">동호회</label>
+					</fieldset>
+				</div>
+			
+
+			</div>
+			
+			<div data-role="footer" id="group_delete" class="ui-grid-a" data-theme="b" data-position="fixed">
+				<div class="ui-block-a">
+				<a href="#" class="ui-btn">그룹편집</a>
+				</div>
+				
+				<div class="ui-block-b">
+					<a href="#group_delete" id="gr_delete_btn" class="ui-btn" data-rel="popup" data-position-to="window"
+							data-transition="pop">그룹 삭제</a>
+					<div data-role="popup" id="group_delete" data-role="button"
+						data-overlay-theme="a" data-theme="a" data-dismissible="false"
+						style="max-width: 320px;">
+						<div role="main" class="ui-content">
+							<h5>정말 삭제하시겠습니까?</h5>
+							<a href="#"
+								class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-a"
+								data-rel="back">CANCEL</a> <a href="#"
+								class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b"
+								data-rel="back" data-transition="flow">DELETE</a>
+
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			
+			
+			
+		</div>
+		<!-- 그룹 끝 -->
+		
+		
+		
+		
+		
+		<script>
+		
+		$(document).ready(function() {
+			$('.toggle_mn').hide();
+
+			$('.title_toggle').click(function() {
+				$('.toggle_mn').toggle('fast');
+			});
+			
+			
+			
+			$('#add_group_select').find('option:first').attr('selected','selected');
+			$('#add_fam').hide();
+			$('#add_univ').hide();
+			$('#add_comp').hide();
+			$('#add_club').hide();
+			
+			var addGrp = $('#add_group_select');			
+			addGrp.change(function(){
+				var addSel = $('#add_group_select option:selected').val();
+
+				if(addSel == 'add_fam') {
+					$('#add_fam').show();
+					$('#add_univ').hide();
+					$('#add_comp').hide();
+					$('#add_club').hide();
+				} else if(addSel == 'add_univ'){
+					$('#add_fam').hide();
+					$('#add_univ').show();
+					$('#add_comp').hide();
+					$('#add_club').hide();
+				} else if(addSel == 'add_comp'){
+					$('#add_fam').hide();
+					$('#add_univ').hide();
+					$('#add_comp').show();
+					$('#add_club').hide();
+				} else if(addSel == 'add_club'){
+					$('#add_fam').hide();
+					$('#add_univ').hide();
+					$('#add_comp').hide();
+					$('#add_club').show();
+				} else if(addSel == 'add_none'){
+					$('#add_fam').hide();
+					$('#add_univ').hide();
+					$('#add_comp').hide();
+					$('#add_club').hide();
+				}
+			});
+
+		
+			$('#add_ok').click(function(){
+				var addName = $('#add_name');
+				var addPhone = $('#add_phone');
+				var addBirth = $('#add_birth');
+				
+				if (addName.val().length == 0) {
+					var popOut='';
+					popOut += '<h5>이름을 입력하세요</h5>';
+					popOut += '<a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-a" data-rel="back" id="add_ok">OK</a>'
+					$('#name_check').append(popOut);
+					addName.focus();
+				}
+				
+				
+				
+			});
+		
+			
+			
+					
+			var infocheck = $('input:checkbox[name="info_name"]:checked'),
+				setGrBtn = $('#set_group_btn'),
+				setDelBtn = $('#set_delete_btn')
+				
+			setGrBtn.click(function(){
+				var set_check1 = $('input[name=info_name]:checked').length;
+				if(set_check1 ==0){
+					alert('항목을 선택해 주세요');
+					return false;
+				}
+			});				
+				
+			setDelBtn.click(function(){	
+				var set_check2 = $('input[name=info_name]:checked').length;
+				if(set_check2 ==0){
+					alert('항목을 선택해 주세요');
+					return false;
+				}
+			});	
+				
+			 
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		});
+		
+		
+</script>
+</body>
+
+</html>

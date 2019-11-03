@@ -71,7 +71,7 @@ public class WebSecurityConfigurerAdapter extends org.springframework.security.c
                 .mvcMatchers("/admin").access("isFullyAuthenticated() and hasRole('ADMIN')")
                 .expressionHandler(expressionHandler()); //AccessDecisionManager 에서 voters를 설정하여 권한 계층을 설정해준다.
         http.authorizeRequests()
-                .mvcMatchers("/", "/signup").permitAll()
+                .mvcMatchers("/", "/signup", "/pimang/**", "/pimang/select").permitAll()
                 .mvcMatchers("/user", "/dashboard").hasRole("USER")
                 .anyRequest().authenticated() //모든 요청에 대해 인증을 요구한다.
                 .expressionHandler(expressionHandler()); //권한 계층 설정

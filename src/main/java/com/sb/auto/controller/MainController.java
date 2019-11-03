@@ -3,6 +3,7 @@ package com.sb.auto.controller;
 import com.sb.auto.common.annotation.CurrentUser;
 import com.sb.auto.common.util.SecurityLogger;
 import com.sb.auto.mapper.JpaRepository;
+import com.sb.auto.model.StockEntity;
 import com.sb.auto.model.UserEntity;
 import com.sb.auto.service.SampleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,18 @@ public class MainController {
         this.jpaRepository = jpaRepository;
     }
 
+    @GetMapping("/pimang")
+    public String pimang(Model model) {
+        model.addAttribute("stockEntity", new StockEntity());
+        return "test";
+    }
+
+    @GetMapping("/pimang/select")
+    public String pimangSelect(Model model) {
+        model.addAttribute("stockEntity", new StockEntity());
+        return "testselect";
+    }
+
     @GetMapping("/")
     public String index(Model model, @CurrentUser UserEntity userEntity) {
         if (userEntity == null) {
@@ -34,7 +47,6 @@ public class MainController {
         } else {
             model.addAttribute("message", userEntity.getUserName() + "님 안녕하세요.");
         }
-
         return "index";
     }
     @GetMapping("/dashboard")

@@ -1,0 +1,490 @@
+/*    <!-- 초기화 -->*/
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Dotum, '돋움', Helvetica, sans-serif;
+}
+
+body {
+    position: relative;
+    background: #f5f6f7;
+}
+
+a {
+    color: #333;
+}
+
+
+/*    <!--  공통부분  -->*/
+
+.required,
+.elective {
+    font-size: 12px;
+    font-weight: 400;
+    display: inline-block;
+}
+
+.required {
+    color: #08a600;
+}
+
+.elective {
+    color: #8e8e8e;
+    ;
+}
+
+/*    <!-- 헤더 -->*/
+
+#header {
+    width: 768px;
+    height: 44px;
+    margin: 0 auto;
+    padding: 62px 0 59px 0;
+    position: relative;
+}
+
+#header .logo {
+    display: block;
+    overflow: hidden;
+    width: 240px;
+    height: 44px;
+    margin: 0 auto;
+    background: url(https://static.nid.naver.com/images/ui/login/pc_sp_login_170424.png) no-repeat;
+    background-position: -1px -1px;
+    background-size: 460px auto;
+}
+
+#header .lang {
+    position: absolute;
+    top: 14px;
+    right: 0;
+    padding: 6px 8px 5px 7px;
+    background: white;
+    border: 1px solid #CCC;
+}
+
+
+/*    <!-- 컨테이너 -->*/
+
+#container {
+    width: 460px;
+    height: 663px;
+    margin: 0 auto;
+    height: auto;
+}
+
+
+#container .chk_all {
+    width: 426px;
+    height: 40.5px;
+    padding-left: 34px;
+    overflow: hidden;
+    position: relative;
+}
+
+#container .chk {
+    width: 426px;
+    padding-left: 34px;
+    overflow: visible;
+    position: relative;
+}
+
+#container .check {
+    display: none;
+}
+
+#container .check + label:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 1px;
+    width: 21px;
+    height: 21px;
+    margin-top: -14px;
+    background: #f5f6f7 url(https://static.nid.naver.com/images/ui/myinfo/pc_check_off_24.png) no-repeat 0 0;
+    background-size: 21px 21px;
+    cursor: pointer;
+}
+
+
+#container .check:checked + label:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 1px;
+    width: 21px;
+    height: 21px;
+    margin-top: -14px;
+    background: #f5f6f7 url(https://static.nid.naver.com/images/ui/myinfo/pc_chcek_on_s_20.png) no-repeat 0 0;
+    background-size: 21px 21px;
+    cursor: pointer;
+}
+
+
+#container .chk_all_txt {
+    cursor: pointer;
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 21px;
+}
+
+#container .chk_all .chk_all_txt {
+    text-decoration: underline;
+}
+
+#container .txt_box {
+    width: 434px;
+    height: 74px;
+    padding: 12px 12px 0 12px;
+    margin-top: 10px;
+    border: 1px solid #dadada;
+    overflow-y: scroll;
+    background-color: white;
+}
+
+#container .txt_box h3 {
+    margin-bottom: 10px;
+}
+
+
+#container .txt_box h3,
+p {
+    font-size: 12px;
+    line-height: 16px;
+    color: #666;
+
+}
+
+#container .box,
+.event,
+.submit {
+    display: block;
+    padding-top: 30px;
+
+}
+
+#container .box {
+    width: 460px;
+    height: 117px;
+}
+
+#container .event {
+    width: 460px;
+    height: 21px;
+}
+
+#container .submit {
+    width: 460px;
+    height: 61.46px;
+}
+
+#container .submit a {
+    width: 225px;
+    height: 23.46px;
+    margin: 0 5px 0 0;
+    padding: 21px 0 17px 0;
+    display: inline-block;
+    float: left;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+
+#container .submit a.agree {
+
+    background-color: #08a600;
+}
+
+#container .submit a.not_agree {
+
+    background-color: #8e8e8e;
+}
+
+#container .group_join {
+    margin: 19px 0 8px;
+    text-align: center;
+    color: #666;
+    font-size: 12px;
+
+}
+
+
+
+
+/*    <!-- 하단 -->*/
+
+#footer {
+    width: 460px;
+    height: 37px;
+    margin: 0 auto;
+    padding: 30px 0 15px 0;
+    text-align: center;
+
+}
+
+#footer ul {
+    vertical-align: middle;
+    margin-bottom: 9px;
+}
+
+#footer li {
+    display: inline-block;
+}
+
+#footer a {
+    font-size: 12px;
+    font-style: normal;
+    line-height: normal;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: #333;
+    text-decoration: none;
+}
+
+.footlogo {
+    position: relative;
+    display: inline-block;
+    width: 63px;
+    height: 11px;
+    background: url(https://static.nid.naver.com/images/join/pc/ci_naver.gif) no-repeat;
+    background-position: 0 0;
+    -webkit-background-size: 63px 11px;
+    background-size: 63px 11px;
+}
+
+.copy {
+    font: 9px verdana;
+    padding-left: 4px;
+
+}
+
+.u_cri {
+    font: 700 9px Verdana;
+    text-decoration: none;
+    color: #DDD;
+}
+
+.all_r {
+    font: 9px/14px Verdana;
+    padding-left: 2px;
+
+}
+
+
+
+
+/*     컨테이너 블럭  */
+
+#container .join_row {
+    width: 460px;
+    height: 75px;
+    position: relative;
+}
+
+#container .join_row2 {
+    width: 460px;
+    height: 150px;
+    position: relative;
+}
+
+#container .join_title {
+    margin: 19px 0 8px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+
+/*      각 블럭 안 span 또는 div */
+
+#container .id,
+.pw,
+.pw2,
+.name,
+.year,
+.month,
+.day,
+.sex,
+.email,
+.ad_num,
+.phone,
+.confirm,
+.join_submit {
+    display: block;
+    position: relative;
+    height: 51px;
+    border: solid 1px #dadada;
+    padding: 10px 10px 10px 14px;
+    background: #fff;
+    box-sizing: border-box;
+    vertical-align: top;
+}
+
+#container .id,
+.pw,
+.pw2
+ {
+    padding-right: 110px;
+    width: 100%;
+}
+
+#container .year,
+.month,
+.day {
+    width: 146px;
+    float: left;
+}
+
+#container .sex,
+.ad_num {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#container .phone {
+    width: 335px;
+    float: left;
+}
+
+#container .cn_submit {
+    float: left;
+    width: 115px;
+    height: 17px;
+    padding: 18px 0 16px 0;
+    background: #fff;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #08a600;
+    margin-left: 10px;
+}
+
+#container .confirm {
+    width: 100%;
+
+    background: #f7f7f7;
+    outline: 0;
+}
+
+#container .join_submit {
+    width: 100%;
+    height: 62px;
+    padding: 21px 0 17px;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+    color: #fff;
+    background-color: #08a600;
+
+
+}
+
+
+
+
+
+/*       컨테이너 input, select   */
+
+#container .int,
+.t_name {
+    display: inline-block;
+    position: relative;
+    height: 29px;
+    line-height: 29px;
+    border: none;
+    background: none;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+
+
+#container .int {
+    width: 100%;
+
+}
+
+
+
+/*        input 의 우측 삽입 */
+
+.step_url,
+.password1,
+.password2,
+.password1_ok,
+.password2_ok,
+.password_er {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    line-height: 51px;
+    right: 13px;
+    font-size: 15px;
+    color: #8e8e8e;
+}
+
+.password1,
+.password2,
+.password1_ok,
+.password2_ok,
+.password_er {
+    width: 20px;
+    height: 20px;
+    top: 10px;
+}
+
+.password1 {
+    background: #fff url(https://static.nid.naver.com/images/ui/join/pc_icon_pass.png) 0 0 no-repeat;
+}
+.password2 {
+    background: #fff url(https://static.nid.naver.com/images/ui/join/pc_icon_check_disable.png) 0 0 no-repeat;
+}
+.password1_ok {
+    background: #fff url(https://static.nid.naver.com/images/ui/join/pc_icon_safe.png) 0 0 no-repeat;
+}
+.password2_ok {
+    background: #fff url(https://static.nid.naver.com/images/ui/join/pc_icon_check_enable.png) 0 0 no-repeat;
+}
+.password_er {
+    background: #fff url(https://static.nid.naver.com/images/ui/join/pc_icon_not_use.png) 0 0 no-repeat;
+}
+
+.secret,
+.secret_ok,
+.secret_er {
+    position:absolute; 
+    right: 38px; 
+    top: 14px; 
+    font-size: 12px;
+}
+
+.secret {
+    display: none;
+}
+
+.secret_ok{
+    color: green; 
+    display: block;
+}
+
+.secret_er{
+    color: red; 
+    display: block;
+}
+
+.error_msg {
+    font-size: 12px;
+    width: auto;
+    height: auto;
+    line-height: normal;
+    margin-top:10px;
+    color: red;
+    
+}
