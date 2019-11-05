@@ -10,13 +10,17 @@ import java.util.List;
 public interface PimangMapper {
 
     //user정보 반환
-    EtcUser validateUser(String userId);
+    EtcUser selectUser(String userId);
     //stock업데이트
-    int countNumber(StockEntity stockEntity );
+    int countNumber(StockEntity stockEntity);
     int insertStock(StockEntity stockEntity);
     int updateStock(StockEntity stockEntity);
     //stock 조회
     List<StockEntity> selectStock(String userId);
+    //number삭제
+    int deleteStockNumber(StockEntity stockEntity);
+    //유저의 모든 number삭제
+    int allDeleteStock(String userId);
 
 
 }

@@ -3,14 +3,14 @@
 
 <mapper namespace="com.sb.auto.mapper.PimangMapper">
 
-    <select id="validateUser" resultType="com.sb.auto.model.EtcUser">
-        select * from ETC_USER
+    <select id="selectUser" resultType="com.sb.auto.model.EtcUser">
+        select * from `_Pmang`.`ETC_USER`
         where 1=1
         AND USER_ID = #{userId} LIMIT 1;
     </select>
 
     <select id="countNumber" resultType="int">
-        select count(*) from `MAINDB`.`STOCK_TAKING`
+        select count(*) from `_Pmang`.`STOCK_TAKING`
         where 1=1
         AND USER_ID = #{userId}
         AND `NUMBER` = #{number}
@@ -18,23 +18,36 @@
     </select>
 
     <insert id="insertStock" parameterType="com.sb.auto.model.StockEntity">
-        INSERT INTO `MAINDB`.`STOCK_TAKING` (`NUMBER`, `USER_ID`, `NICKNAME`, `BLANCE1`, `BLANCE2`, `BLANCE3`, `BLANCE4`, `BLANCE5`) VALUES
+        INSERT INTO `_Pmang`.`STOCK_TAKING` (`NUMBER`, `USER_ID`, `NICKNAME`, `BLANCE1`, `BLANCE2`, `BLANCE3`, `BLANCE4`, `BLANCE5`) VALUES
         (#{number}, #{userId}, #{nickname}, #{blance1}, #{blance2}, 0, 0, 0);
     </insert>
 
 
     <update id="updateStock" parameterType="com.sb.auto.model.StockEntity">
-         UPDATE `MAINDB`.`STOCK_TAKING` SET nickname = #{nickname}, blance1 = #{blance1}, blance2 = #{blance2}, blance3 = '0', blance4 = '0', blance5 = '0'
+         UPDATE `_Pmang`.`STOCK_TAKING` SET nickname = #{nickname}, blance1 = #{blance1}, blance2 = #{blance2}, blance3 = '0', blance4 = '0', blance5 = '0'
          WHERE 1=1
          AND USER_ID = #{userId}
          AND `NUMBER` = #{number};
     </update>
 
     <select id="selectStock" resultType="com.sb.auto.model.StockEntity">
-        select * from `MAINDB`.`STOCK_TAKING`
+        select * from `_Pmang`.`STOCK_TAKING`
         where 1=1
         AND USER_ID = #{userId};
     </select>
+
+    <delete id="deleteStockNumber" parameterType="com.sb.auto.model.StockEntity">
+        DELETE FROM `_Pmang`.`STOCK_TAKING`
+        WHERE 1=1
+        AND USER_ID = #{userId}
+        AND `NUMBER` = #{number};
+    </delete>
+
+    <delete id="allDeleteStock" parameterType="com.sb.auto.model.StockEntity">
+        DELETE FROM `_Pmang`.`STOCK_TAKING`
+        WHERE 1=1
+        AND USER_ID = #{userId};
+    </delete>
 
 
 </mapper>
