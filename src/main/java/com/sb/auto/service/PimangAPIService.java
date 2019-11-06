@@ -6,8 +6,6 @@ import com.sb.auto.model.StockEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 @Service
 @Transactional
 public class PimangAPIService {
@@ -59,10 +57,10 @@ public class PimangAPIService {
      * @param stockEntity
      * @return
      */
-    public List<StockEntity> selectStock(StockEntity stockEntity) {
-        String resultString = validateUser(stockEntity);
-        if (!resultString.equals("성공")) return null;
-        else return pimangMapper.selectStock(stockEntity.getUserId());
+    public <T> T selectStock(StockEntity stockEntity) {
+        T resultString = (T) validateUser(stockEntity);
+        if (!resultString.equals("성공")) return resultString;
+        else return (T) pimangMapper.selectStock(stockEntity.getUserId());
     }
 
     /**

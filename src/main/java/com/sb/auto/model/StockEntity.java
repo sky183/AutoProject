@@ -1,9 +1,10 @@
 package com.sb.auto.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 @Data
-public class StockEntity extends EtcUser {
+public class StockEntity<T> extends EtcUser {
     private Integer number;
     private String nickname;
     private String blance1;
@@ -11,4 +12,6 @@ public class StockEntity extends EtcUser {
     private Integer blance3;
     private Integer blance4;
     private Integer blance5;
+    @JsonIgnore
+    private T data;
 }

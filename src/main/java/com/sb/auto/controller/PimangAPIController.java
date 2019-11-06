@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 @RestController
 public class PimangAPIController {
 
@@ -23,8 +21,8 @@ public class PimangAPIController {
     }
 
     @PostMapping("/pimang/select")
-    public List<StockEntity> selectStock(@ModelAttribute StockEntity stockEntity) {
-        return pimangAPIService.selectStock(stockEntity);
+    public <T> T selectStock(@ModelAttribute StockEntity stockEntity) {
+        return (T) pimangAPIService.selectStock(stockEntity);
     }
 
     @PostMapping("/pimang/delete")
