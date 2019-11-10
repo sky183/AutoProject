@@ -33,13 +33,29 @@ public class SignUpControllerTest {
     }
 
     @Test
+    public void testList() throws Exception {
+        mockMvc.perform(get("/"))
+                .andExpect(status().isOk())
+//                .andExpect(content().string("hello world")) //결과 확인
+//                .andReturn(); //리턴값을 준다.
+                .andDo(print()) //http 내용을 프린트해줌
+        ;
+
+        //        mockMvc.perform(get("/"));
+//                .andExpect(content().string("hello kim"));
+    /*    assertThat(outputCapture.toString())
+                .contains("hello")
+                .contains("sout");*/
+    }
+
+    @Test
     public void processSignUp() throws Exception {
         mockMvc.perform(post("/signup")
                 .param("userId", "sky183333")
                 .param("userPw", "1")
                 .param("userName", "김성범")
                 .param("phone", "0107288")
-                .with(csrf())) //Post 요청의 경우 csrf 토큰을 같이 전송해야 테스트 성공한다.
+                .with(csrf()))  //Post 요청의 경우 csrf 토큰을 같이 전송해야 테스트 성공한다.
                 .andDo(print())
                 .andExpect(status().isOk());
     }
