@@ -27,21 +27,34 @@
                             <li th:unless="${#authorization.expr('isAuthenticated()')}">
                                 <a href="/logout" th:href="@{/login}">로그인</a>
                             </li>
-                            <li><a href="/signup" th:href="@{/signup}">회원가입</a></li>
-                            <li><a href="/dashboard" th:href="@{/dashboard}">게시판</a></li>
-                            <li><a href="/user" th:href="@{/user}">유저페이지</a></li>
-                            <li><a href="/admin" th:href="@{/admin}">관리자</a></li>
+                            <li th:if="${#authorization.expr('!isAuthenticated()')}">
+                                <a href="/signup" th:href="@{/signup}">회원가입</a>
+                            </li>
+                            <li>
+                                <a href="/user" th:href="@{/user}">유저페이지</a>
+                            </li>
+                            <li th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+                                <a href="/admin" th:href="@{/admin}">관리자</a>
+                            </li>
+                            <li>
+                                <a href="/dashboard" th:href="@{/paypal}">결제</a>
+                            </li>
+<!--
+                            <li>
+                                <a href="/dashboard" th:href="@{/dashboard}">게시판</a>
+                            </li>
+-->
                         </ul>
                     </nav>
                 </div>
             </div>
             <div class="inner cover">
                 <h1 class="cover-heading" th:text="${message}">Hello</h1>
-                <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download,
-                    edit the text, and add your own fullscreen background photo to make it your own.</p>
-                <p class="lead">
+                <br>
+                <p class="lead">현재 페이지는 아직 제작중인 페이지입니다.</p>
+<!--                <p class="lead">
                     <a href="#" class="btn btn-lg btn-default">Learn more</a>
-                </p>
+                </p>-->
             </div>
             <div class="mastfoot">
                 <div class="inner">

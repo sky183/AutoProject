@@ -23,12 +23,6 @@ public class AccountController {
         this.userDetailService = userDetailService;
     }
 
-    @GetMapping("/account/{userRole}/{userId}/{userPw}")
-    @ResponseBody
-    public UserEntity createAccount(@ModelAttribute UserEntity userEntity) {
-        return userDetailService.insertUser(userEntity);
-    }
-
     @GetMapping("/login")
     public String loginForm() {
         return "login";

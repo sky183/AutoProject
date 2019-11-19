@@ -31,13 +31,13 @@ public class MainController {
     @GetMapping("/pimang")
     public String pimang(Model model) {
         model.addAttribute("stockEntity", new StockEntity());
-        return "test";
+        return "pimangUp";
     }
 
     @GetMapping("/pimang/select")
     public String pimangSelect(Model model) {
         model.addAttribute("stockEntity", new StockEntity());
-        return "testselect";
+        return "pimangSel";
     }
 
     @GetMapping("/")
@@ -49,22 +49,26 @@ public class MainController {
         }
         return "index";
     }
-    @GetMapping("/dashboard")
-    public String dashboard(Model model, Principal principal) {
-        model.addAttribute("message", "Hello " + principal.getName());
-        sampleService.dashboard();
-        return "dashboard";
+    @GetMapping("/user")
+    public String user(Model model, Principal principal) {
+        model.addAttribute("message", "Hello User, " + principal.getName());
+        return "user";
     }
     @GetMapping("/admin")
     public String admin(Model model, Principal principal) {
         model.addAttribute("message", "Hello Admin, " + principal.getName());
         return "admin";
     }
-    @GetMapping("/user")
-    public String user(Model model, Principal principal) {
-        model.addAttribute("message", "Hello User, " + principal.getName());
-//        model.addAttribute("books", bookRepository.findCurrentUserBooks());
-        return "user";
+    @GetMapping("/dashboard")
+    public String dashboard(Model model, Principal principal) {
+        model.addAttribute("message", "Hello " + principal.getName());
+        sampleService.dashboard();
+        return "dashboard";
+    }
+    @GetMapping("/paypal")
+    public String paypal(Model model, @CurrentUser UserEntity userEntity) {
+        model.addAttribute("userEntity", userEntity);
+        return "paypal";
     }
 
     @GetMapping("/async-handler")

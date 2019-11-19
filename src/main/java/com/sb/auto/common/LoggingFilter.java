@@ -1,7 +1,5 @@
 package com.sb.auto.common;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.util.StopWatch;
 import org.springframework.web.filter.GenericFilterBean;
 
@@ -14,12 +12,11 @@ import java.io.IOException;
 
 public class LoggingFilter extends GenericFilterBean {
 
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
-
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         StopWatch stopWatch = new StopWatch();
-        stopWatch.start(((HttpServletRequest)request).getRequestURI());
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        stopWatch.start(httpRequest.getRequestURI() + "  " + httpRequest.getRemoteAddr());
         chain.doFilter(request, response);
         stopWatch.stop();
         logger.info(stopWatch.prettyPrint());
