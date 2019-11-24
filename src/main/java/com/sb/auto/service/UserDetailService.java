@@ -46,4 +46,5 @@ public class UserDetailService implements org.springframework.security.core.user
         this.memberMapper.save(userEntity);
         return userEntity;
     }
+
 }

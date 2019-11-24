@@ -2,10 +2,12 @@ package com.sb.auto.controller;
 
 import com.sb.auto.common.annotation.CurrentUser;
 import com.sb.auto.common.util.SecurityLogger;
+import com.sb.auto.config.security.User;
 import com.sb.auto.mapper.JpaRepository;
 import com.sb.auto.model.StockEntity;
 import com.sb.auto.model.UserEntity;
 import com.sb.auto.service.SampleService;
+import com.sb.auto.service.UserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,10 +24,13 @@ public class MainController {
 
     JpaRepository jpaRepository;
 
+    UserDetailService userDetailService;
+
     @Autowired
-    public MainController(SampleService sampleService, JpaRepository jpaRepository) {
+    public MainController(SampleService sampleService, JpaRepository jpaRepository, UserDetailService userDetailService) {
         this.sampleService = sampleService;
         this.jpaRepository = jpaRepository;
+        this.userDetailService = userDetailService;
     }
 
     @GetMapping("/pimang")
@@ -51,7 +56,9 @@ public class MainController {
     }
     @GetMapping("/user")
     public String user(Model model, Principal principal) {
-        model.addAttribute("message", "Hello User, " + principal.getName());
+        User user = (User) userDetailService.loadUserByUsername(principal.getName());
+        UserEntity userEntity = user.getUserEntity();
+        model.addAttribute("userEntity", userEntity);
         return "user";
     }
     @GetMapping("/admin")

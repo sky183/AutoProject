@@ -13,82 +13,107 @@
     <!-- jquery -->
     <script th:src="@{/scripts/libs/jquery/jquery-3.3.1.min.js}"></script>
     <style>
-        .form-check-label, .form-check-input { cursor: pointer; }
+        .form-check-label, .form-check-input {
+            cursor: pointer;
+        }
     </style>
     <title>Admin</title>
 </head>
 <body>
 <div class="container">
-        <!--action : 주소를 https://www.paypal.com/cgi-bin/webscr로 입력하게되면 business필드에 실제 페이팔 계정을 입력하면되고 실제로 결제가 이루어진다. 그러므로 테스트환경에서는 https://www.sandbox.paypal.com/cgi-bin/webscr로 입력하고 business필드에는 전에 만들어둔 샌드박스 판매자 테스트 계정을 입력하자.-->
-        <form class="form-signin" id="paypal" name="paypal" target="paypal_popup" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
-            <h2 class="form-signin-heading">결제</h2>
-            <!-- 실제 구매할 수 있는 주소는 다음과 같다.-->
-            <!-- <form action="https://www.paypal.com/cgi-bin/webscr" method="post">-->
 
-            <!--cmd : 이필드는 필수항목이므로 항상 있어야한다.-->
-            <input type="hidden" name="cmd" value="_xclick">
-            <!--business : 페이팔 판매자 계정, 결제가 이루어지면 이 계정으로 판매대금이 입금된다.-->
-            <input type="hidden" name="business" value="minasb@naver.com">
-            <!--item_name : 상점내 상품의 이름-->
-            <input type="hidden" name="item_name" value="포인트">
-            <!--item_number : 상점내 상품의 고유번호-->
-            <input type="hidden" name="item_number" value="0001">
-            <!--currency_code : 결제 통화단위-->
-            <input type="hidden" name="currency_code" value="USD">
-            <!--amount : 결제금액-->
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="amount" id="val1" value="10" checked>
-                <label class="form-check-label" for="val1">
-                    10$ (10,000 포인트 충전)
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="amount" id="val2" value="30">
-                <label class="form-check-label" for="val2">
-                    30$ (33,000 포인트 충전)
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="amount" id="val3" value="50">
-                <label class="form-check-label" for="val3">
-                    50$ (55,000 포인트 충전)
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="amount" id="val4" value="100">
-                <label class="form-check-label" for="val4">
-                    100$ (120,000 포인트 충전)
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="amount" id="val5" value="150">
-                <label class="form-check-label" for="val5">
-                    150$ (190,000 포인트 충전)
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="amount" id="val6" value="200">
-                <label class="form-check-label" for="val6">
-                    200$ (260,000 포인트 충전)
-                </label>
-            </div>
-            <!--custom : 이 필드는 상점내에서 추가로 정보를 전달할 수 있게 페이팔에서 지정한 커스텀 필드인데 보통 해당 필드에 상점내회원의 고유번호를 입력한다.-->
-            <input type="hidden" name="custom"th:value="${userEntity.userId}">
-            <input type="hidden" name="charset" value="UTF-8">
-            <br>
-            <button class="btn btn-sm btn-warning btn-block" type="submit" id="btn_submit">결제</button>
-<!--            <input type="image" id="btn_submit" name="submit" border="0"
-                   src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"
-                   alt="PayPal - The safer, easier way to pay online">-->
-        </form>
+    <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="hosted_button_id" value="4AWCDJPTLPRDG">
+        <table>
+            <tr>
+                <td><input type="hidden" name="on0" value="point">point</td>
+            </tr>
+            <tr>
+                <td><select name="os0">
+                    <option value="10,000 point   -">10,000 point - $10.00 USD</option>
+                    <option value="33,000 point   -">33,000 point - $30.00 USD</option>
+                    <option value="57,000 point   -">57,000 point - $50.00 USD</option>
+                    <option value="120,000 point   -">120,000 point - $100.00 USD</option>
+                    <option value="190,000 point   -">190,000 point - $150.00 USD</option>
+                    <option value="260,000 point   -">260,000 point - $200.00 USD</option>
+                </select></td>
+            </tr>
+        </table>
+        <input type="hidden" name="currency_code" value="USD">
+        <input type="hidden" name="custom" th:value="${userEntity.userId}">
+        <input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0"
+               name="submit" alt="PayPal - The safer, easier way to pay online!">
+        <img alt="" border="0" src="https://www.sandbox.paypal.com/ko_KR/i/scr/pixel.gif" width="1" height="1">
+    </form>
+
+    <!--        &lt;!&ndash;action : 주소를 https://www.paypal.com/cgi-bin/webscr로 입력하게되면 business필드에 실제 페이팔 계정을 입력하면되고 실제로 결제가 이루어진다. 그러므로 테스트환경에서는 https://www.sandbox.paypal.com/cgi-bin/webscr로 입력하고 business필드에는 전에 만들어둔 샌드박스 판매자 테스트 계정을 입력하자.&ndash;&gt;
+            <form class="form-signin" id="paypal" name="paypal" target="paypal_popup" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+                <h2 class="form-signin-heading">결제</h2>
+                &lt;!&ndash; 실제 구매할 수 있는 주소는 다음과 같다.&ndash;&gt;
+                &lt;!&ndash; <form action="https://www.paypal.com/cgi-bin/webscr" method="post">&ndash;&gt;
+
+                &lt;!&ndash;cmd : 이필드는 필수항목이므로 항상 있어야한다.&ndash;&gt;
+                <input type="hidden" name="cmd" value="_xclick">
+                &lt;!&ndash;business : 페이팔 판매자 계정, 결제가 이루어지면 이 계정으로 판매대금이 입금된다.&ndash;&gt;
+                <input type="hidden" name="business" value="minasb@naver.com">
+                &lt;!&ndash;item_name : 상점내 상품의 이름&ndash;&gt;
+                <input type="hidden" name="item_name" value="포인트">
+                &lt;!&ndash;item_number : 상점내 상품의 고유번호&ndash;&gt;
+                <input type="hidden" name="item_number" value="0001">
+                &lt;!&ndash;currency_code : 결제 통화단위&ndash;&gt;
+                <input type="hidden" name="currency_code" value="USD">
+                &lt;!&ndash;amount : 결제금액&ndash;&gt;
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="amount" id="val1" value="10" checked>
+                    <label class="form-check-label" for="val1">
+                        10$ (10,000 포인트 충전)
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="amount" id="val2" value="30">
+                    <label class="form-check-label" for="val2">
+                        30$ (33,000 포인트 충전)
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="amount" id="val3" value="50">
+                    <label class="form-check-label" for="val3">
+                        50$ (57,000 포인트 충전)
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="amount" id="val4" value="100">
+                    <label class="form-check-label" for="val4">
+                        100$ (120,000 포인트 충전)
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="amount" id="val5" value="150">
+                    <label class="form-check-label" for="val5">
+                        150$ (190,000 포인트 충전)
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="amount" id="val6" value="200">
+                    <label class="form-check-label" for="val6">
+                        200$ (260,000 포인트 충전)
+                    </label>
+                </div>
+                &lt;!&ndash;custom : 이 필드는 상점내에서 추가로 정보를 전달할 수 있게 페이팔에서 지정한 커스텀 필드인데 보통 해당 필드에 상점내회원의 고유번호를 입력한다.&ndash;&gt;
+                <input type="hidden" name="custom"th:value="${userEntity.userId}">
+                <input type="hidden" name="charset" value="UTF-8">
+                <br>
+                <button class="btn btn-sm btn-warning btn-block" type="submit" id="btn_submit">결제</button>
+            </form>-->
 </div>
 </body>
 <script type="text/javascript">
-    $(document).ready(function(){
-        $("#btn_submit").on("click", function(){
-            window.open("", "paypal_popup", "width=500, height=600, scrollbars=no, menubar=no, status=no, toolbar=no, location=no");
-            $("#paypal").submit();
-        });
-    });
+    /*    $(document).ready(function(){
+            $("#btn_submit").on("click", function(){
+                window.open("", "paypal_popup", "width=500, height=600, scrollbars=no, menubar=no, status=no, toolbar=no, location=no");
+                $("#paypal").submit();
+            });
+        });*/
 </script>
 </html>

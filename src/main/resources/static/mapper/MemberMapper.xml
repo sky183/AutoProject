@@ -4,7 +4,7 @@
 <mapper namespace="com.sb.auto.mapper.MemberMapper">
 
     <select id="findByUserId" resultType="com.sb.auto.model.UserEntity">
-        select * from USER
+        select * from `MAINDB`.`USER`
         where USER_ID = #{userId}
     </select>
 
@@ -14,6 +14,16 @@
     </insert>
 
     <update id="updateUser" parameterType="com.sb.auto.model.UserEntity">
+    </update>
+
+    <insert id="paymentSave" parameterType="map">
+        INSERT INTO `MAINDB`.`PAYPAL` (`TXN_ID`, `USER_ID`, `PAYMENT_AMOUNT`, `PAYMENT_FEE`) VALUES
+        (#{txnId}, #{userId}, #{paymentAmount}, #{paymentFee});
+    </insert>
+
+    <update id="paymentUser" parameterType="map">
+        UPDATE `MAINDB`.`USER` SET POINT = POINT + #{paymentAmount}
+        WHERE USER_ID = #{userId}
     </update>
 
 

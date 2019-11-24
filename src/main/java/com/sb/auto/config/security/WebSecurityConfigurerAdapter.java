@@ -71,7 +71,7 @@ public class WebSecurityConfigurerAdapter extends org.springframework.security.c
                 .mvcMatchers("/admin").access("isFullyAuthenticated() and hasRole('ADMIN')")
                 .expressionHandler(expressionHandler()); //AccessDecisionManager 에서 voters를 설정하여 권한 계층을 설정해준다.
         http.authorizeRequests()
-                .mvcMatchers("/", "/signup", "/pimang/**").permitAll()
+                .mvcMatchers("/", "/signup", "/pimang/**", "/paypal/ipn").permitAll()
                 .mvcMatchers("/user", "/dashboard").hasRole("USER")
                 .anyRequest().authenticated() //모든 요청에 대해 인증을 요구한다.
                 .expressionHandler(expressionHandler()); //권한 계층 설정
@@ -95,7 +95,7 @@ public class WebSecurityConfigurerAdapter extends org.springframework.security.c
          * 인증 정보를 컨텍스트에 저장하는 것이 아니므로 인증이 저장되지는 않는다. 원한다면 인증 유효시간 등을 설정도 가능하다.(비추)
          */
         http.httpBasic();
-        http.csrf().ignoringAntMatchers("/pimang/**"); //일부 url에 한해 csrf 토큰 사용하지 않도록 설정
+        http.csrf().ignoringAntMatchers("/pimang/**", "/paypal/ipn"); //일부 url에 한해 csrf 토큰 사용하지 않도록 설정
         /**
          * 로그 아웃을 트리거하는 URL (기본값은 "/ logout") CSRF 보호가 활성화 된 경우 (기본값) 요청도 POST 여야합니다.
          * 이는 기본적으로 로그 아웃을 트리거하기 위해 POST "/ logout"이 필요함을 의미합니다.
