@@ -1,6 +1,6 @@
 package com.sb.auto.config.security;
 
-import com.sb.auto.model.UserEntity;
+import com.sb.auto.model.UserVO;
 import org.springframework.jdbc.support.JdbcUtils;
 
 /**
@@ -12,14 +12,14 @@ public class AccountContext {
         System.out.println(JdbcUtils.commonDatabaseName("camelCase"));
     }
 
-    private static final ThreadLocal<UserEntity> ACCOUNT_THREAD_LOCAL = new ThreadLocal<>();
+    private static final ThreadLocal<UserVO> ACCOUNT_THREAD_LOCAL = new ThreadLocal<>();
 
-    public static void setAccount(UserEntity userEntity) {
-        ACCOUNT_THREAD_LOCAL.set(userEntity);
+    public static void setAccount(UserVO userVO) {
+        ACCOUNT_THREAD_LOCAL.set(userVO);
 
     }
 
-    public static UserEntity getAccount() {
+    public static UserVO getAccount() {
         return ACCOUNT_THREAD_LOCAL.get();
     }
 

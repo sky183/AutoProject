@@ -1,8 +1,7 @@
 package com.sb.auto.form;
 
 
-import com.sb.auto.model.UserEntity;
-import com.sb.auto.service.SampleService;
+import com.sb.auto.model.UserVO;
 import com.sb.auto.service.UserDetailService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,9 +19,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class UserDetailServiceTest {
 
     @Autowired
-    SampleService sampleService;
-
-    @Autowired
     UserDetailService userDetailService;
 
     @Autowired
@@ -30,16 +26,16 @@ public class UserDetailServiceTest {
 
     @Test
     public void loadUserByUsername() {
-        UserEntity userEntity = new UserEntity();
-        userEntity.setUserRole("ADMIN");
-        userEntity.setUserId("sky183");
-        userEntity.setUserPw("1");
-        userEntity.setPhone("010");
-        userEntity.setPoint(20000);
-        userEntity.setUserName("김성범");
-        userEntity.setUserSeq(1);
+        UserVO userVO = new UserVO();
+        userVO.setUserRole("ADMIN");
+        userVO.setUserId("sky183");
+        userVO.setUserPw("1");
+        userVO.setPhone("010");
+        userVO.setPoint(20000);
+        userVO.setUserName("김성범");
+        userVO.setUserSeq(1);
 
-        userDetailService.insertUser(userEntity);
+        userDetailService.insertUser(userVO);
 
         UserDetails userDetails = userDetailService.loadUserByUsername("sky183");
 
@@ -48,7 +44,7 @@ public class UserDetailServiceTest {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        sampleService.dashboard();
+        userDetailService.dashboard();
 
     }
 

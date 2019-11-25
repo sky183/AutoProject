@@ -2,9 +2,11 @@ package com.sb.auto.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
-public class StockEntity<T> extends EtcUser {
+@EqualsAndHashCode(callSuper=false)
+public class StockVO<T> extends EtcUserVO {
     private Integer number;
     private String nickname;
     private String blance1;

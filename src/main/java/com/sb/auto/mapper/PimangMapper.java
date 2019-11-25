@@ -1,7 +1,7 @@
 package com.sb.auto.mapper;
 
-import com.sb.auto.model.EtcUser;
-import com.sb.auto.model.StockEntity;
+import com.sb.auto.model.EtcUserVO;
+import com.sb.auto.model.StockVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -14,30 +14,30 @@ public interface PimangMapper {
      * @param userId
      * @return
      */
-    EtcUser selectUser(String userId);
+    EtcUserVO selectUser(String userId);
 
     /**
      * stock업데이트
-     * @param stockEntity
+     * @param stockVO
      * @return
      */
-    int countNumber(StockEntity stockEntity);
-    int insertStock(StockEntity stockEntity);
-    int updateStock(StockEntity stockEntity);
+    int countNumber(StockVO stockVO);
+    int insertStock(StockVO stockVO);
+    int updateStock(StockVO stockVO);
 
     /**
      * stock 조회
      * @param userId
      * @return
      */
-    List<StockEntity> selectStock(String userId);
+    List<StockVO> selectStock(String userId);
 
     /**
      * number삭제
-     * @param stockEntity
+     * @param stockVO
      * @return
      */
-    int deleteStockNumber(StockEntity stockEntity);
+    int deleteStockNumber(StockVO stockVO);
 
     /**
      * 유저의 모든 number삭제

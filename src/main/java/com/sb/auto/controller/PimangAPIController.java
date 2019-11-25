@@ -1,6 +1,6 @@
 package com.sb.auto.controller;
 
-import com.sb.auto.model.StockEntity;
+import com.sb.auto.model.StockVO;
 import com.sb.auto.service.PimangAPIService;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,23 +16,23 @@ public class PimangAPIController {
     }
 
     @PostMapping("/pimang/update")
-    public String updateStock(@ModelAttribute StockEntity stockEntity){
-        return pimangAPIService.updateStock(stockEntity);
+    public String updateStock(@ModelAttribute StockVO stockVO){
+        return pimangAPIService.updateStock(stockVO);
     }
 
     @PostMapping("/pimang/select")
-    public <T> T selectStock(@ModelAttribute StockEntity stockEntity) {
-        return (T) pimangAPIService.selectStock(stockEntity);
+    public <T> T selectStock(@ModelAttribute StockVO stockVO) {
+        return (T) pimangAPIService.selectStock(stockVO);
     }
 
     @PostMapping("/pimang/delete")
-    public String deleteStock(@ModelAttribute StockEntity stockEntity){
-        return pimangAPIService.deleteByStockNumber(stockEntity);
+    public String deleteStock(@ModelAttribute StockVO stockVO){
+        return pimangAPIService.deleteByStockNumber(stockVO);
     }
 
     @PostMapping("/pimang/allDelete")
-    public String allDeleteStock(@ModelAttribute StockEntity stockEntity){
-        return pimangAPIService.allDeleteStock(stockEntity);
+    public String allDeleteStock(@ModelAttribute StockVO stockVO){
+        return pimangAPIService.allDeleteStock(stockVO);
     }
 
 

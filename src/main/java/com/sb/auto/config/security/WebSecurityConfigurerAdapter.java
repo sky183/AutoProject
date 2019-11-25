@@ -117,8 +117,8 @@ public class WebSecurityConfigurerAdapter extends org.springframework.security.c
         http.sessionManagement()
 //                .sessionFixation().newSession()
                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED) //세션을 만들지 여부(IF_REQUIRED가 기본이므로 세팅 안해도 됨)
-                .invalidSessionUrl("/login") //유효하지 않은 세션의 경우 로그인 페이지로
-                .maximumSessions(1) //최대 접속 가능 세션
+                .invalidSessionUrl("/") //유효하지 않은 세션의 경우 로그인 페이지로
+                .maximumSessions(3) //최대 접속 가능 세션
                 .maxSessionsPreventsLogin(false) //false시 다른곳에서 접속하면 기존 세션 종료- 새로운 세션에서 로그인 자체를 못하게 하고 싶을때는 true
                 .expiredSessionStrategy(e -> {
                     HttpServletResponse response = e.getResponse();

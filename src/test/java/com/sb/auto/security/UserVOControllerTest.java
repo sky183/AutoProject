@@ -1,6 +1,6 @@
 package com.sb.auto.security;
 
-import com.sb.auto.model.UserEntity;
+import com.sb.auto.model.UserVO;
 import com.sb.auto.service.UserDetailService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc //가상의 인증된 유저 또는 인증되지 않은 유저로 사용 가능
-public class UserEntityControllerTest {
+public class UserVOControllerTest {
 
     @Autowired
     MockMvc mockMvc;
@@ -68,7 +68,7 @@ public class UserEntityControllerTest {
     public void login_success() throws Exception {
         String username = "keesun";
         String password = "123";
-        UserEntity user = this.createUser(username, password);
+        UserVO user = this.createUser(username, password);
         mockMvc.perform(formLogin().user(user.getUserId()).password(password))
                 .andExpect(authenticated());
     }
@@ -78,7 +78,7 @@ public class UserEntityControllerTest {
     public void login_success2() throws Exception {
         String username = "keesun";
         String password = "123";
-        UserEntity user = this.createUser(username, password);
+        UserVO user = this.createUser(username, password);
         mockMvc.perform(formLogin().user(user.getUserId()).password(password))
                 .andExpect(authenticated());
     }
@@ -88,17 +88,17 @@ public class UserEntityControllerTest {
     public void login_fail() throws Exception {
         String username = "keesun";
         String password = "123";
-        UserEntity user = this.createUser(username, password);
+        UserVO user = this.createUser(username, password);
         mockMvc.perform(formLogin().user(user.getUserId()).password("12345"))
                 .andExpect(unauthenticated());
     }
 
-    private UserEntity createUser(String username, String password) {
-        UserEntity userEntity = new UserEntity();
-        userEntity.setUserId(username);
-        userEntity.setUserPw(password);
-        userEntity.setUserRole("USER");
-        return userDetailService.insertUser(userEntity);
+    private UserVO createUser(String username, String password) {
+        UserVO userVO = new UserVO();
+        userVO.setUserId(username);
+        userVO.setUserPw(password);
+        userVO.setUserRole("USER");
+        return userDetailService.insertUser(userVO);
     }
 
 }

@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface BookRepository extends JpaRepository<BookEntity, Integer> {
 
-    @Query("select b from BookEntity b where b.author.id = #{principal.userEntity.id}")
+    @Query("select b from BookEntity b where b.author.id = #{principal.userVO.id}")
     List<BookEntity> findCurrentUserBooks();
 }

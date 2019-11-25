@@ -14,7 +14,7 @@
 <body>
 <div class="container">
 
-    <form class="form-signin" action="/pimang/update" method="post" th:object="${stockEntity}" th:action="@{/pimang/update}">
+    <form class="form-signin" action="/pimang/update" method="post" th:object="${stockVO}" th:action="@{/pimang/update}">
         <h2 class="form-signin-heading">Update</h2>
         <input type="text" class="form-control" th:field="*{number}" placeholder="number"  autofocus>
         <input type="text" class="form-control" th:field="*{userId}"  placeholder="userId" >

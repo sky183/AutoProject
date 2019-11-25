@@ -1,6 +1,6 @@
 package com.sb.auto.service;
 
-import com.sb.auto.mapper.MemberMapper;
+import com.sb.auto.mapper.UserMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,16 +10,16 @@ import java.util.Map;
 @Transactional
 public class PayPalService {
 
-    MemberMapper memberMapper;
+    UserMapper userMapper;
 
-    public PayPalService(MemberMapper memberMapper) {
-        this.memberMapper = memberMapper;
+    public PayPalService(UserMapper userMapper) {
+        this.userMapper = userMapper;
     }
 
     public String updatePoint(Map paymap) {
         try {
-            memberMapper.paymentSave(paymap);
-            memberMapper.paymentUser(paymap);
+            userMapper.paymentSave(paymap);
+            userMapper.paymentUser(paymap);
         } catch (Exception e) {
             return "FAIL";
         }

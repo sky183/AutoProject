@@ -1,18 +1,18 @@
 package com.sb.auto.mapper;
 
-import com.sb.auto.model.UserEntity;
+import com.sb.auto.model.UserVO;
 
 import java.util.List;
 
 /**
  * JpaRepository DAO
  */
-public interface JpaRepository extends org.springframework.data.jpa.repository.JpaRepository<UserEntity, Integer> {
+public interface JpaRepository extends org.springframework.data.jpa.repository.JpaRepository<UserVO, Integer> {
 
-    UserEntity findByUserId(String userId);
+    UserVO findByUserId(String userId);
 
-    List<UserEntity> findByUserName(String userName);
+    List<UserVO> findByUserName(String userName);
 
-    List<UserEntity> findByUserNameLike(String userName);
+    List<UserVO> findByUserNameLike(String userName);
 
 }

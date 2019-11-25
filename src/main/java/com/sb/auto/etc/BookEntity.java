@@ -1,7 +1,7 @@
 package com.sb.auto.etc;
 
 
-import com.sb.auto.model.UserEntity;
+import com.sb.auto.model.UserVO;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,7 +18,7 @@ public class BookEntity {
     private String title;
 
     @ManyToOne
-    private UserEntity author;
+    private UserVO author;
 
     public Integer getId() {
         return id;
@@ -36,11 +36,11 @@ public class BookEntity {
         this.title = title;
     }
 
-    public UserEntity getAuthor() {
+    public UserVO getAuthor() {
         return author;
     }
 
-    public void setAuthor(UserEntity author) {
+    public void setAuthor(UserVO author) {
         this.author = author;
     }
 }

@@ -1,8 +1,8 @@
 package com.sb.auto.service;
 
 import com.sb.auto.mapper.PimangMapper;
-import com.sb.auto.model.EtcUser;
-import com.sb.auto.model.StockEntity;
+import com.sb.auto.model.EtcUserVO;
+import com.sb.auto.model.StockVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Rule;
@@ -41,40 +41,40 @@ public class PimangAPIServiceTest {
     @Autowired
     private MockMvc mockMvc;
 
-    private StockEntity stockEntity;
-    EtcUser etcUser;
+    private StockVO stockVO;
+    EtcUserVO etcUserVO;
 
 
     @Before
     public void setUp() {
-        this.stockEntity = new StockEntity();
-        stockEntity.setUserId("pimang");
-        stockEntity.setUserPw("pimang123");
-        this.etcUser = new EtcUser();
-        etcUser.setUserId("pimang");
-        etcUser.setUserPw("pimang123");
+        this.stockVO = new StockVO();
+        stockVO.setUserId("pimang");
+        stockVO.setUserPw("pimang123");
+        this.etcUserVO = new EtcUserVO();
+        etcUserVO.setUserId("pimang");
+        etcUserVO.setUserPw("pimang123");
         /**
          * when() then()과 같다.
          */
-        given(pimangMapper.selectUser("pimang")).willReturn(this.etcUser);
+        given(pimangMapper.selectUser("pimang")).willReturn(this.etcUserVO);
         /**
          * when() - 메서드 호출 조건, thenReturn() 그 조건을 충족할때 리턴할 값
          * selectUser를 호출하면 etcUser를 리턴하도록 설정해주는 메서드
          */
-        when(pimangAPIService.selectUser(stockEntity)).thenReturn(etcUser);
-        when(pimangAPIService.validateUser(stockEntity)).thenReturn("성공");
+        when(pimangAPIService.selectUser(stockVO)).thenReturn(etcUserVO);
+        when(pimangAPIService.validateUser(stockVO)).thenReturn("성공");
     }
 
 
     @Test
     public void selectUser() throws Exception {
-        log.info(pimangAPIService.selectUser(stockEntity).toString());
+        log.info(pimangAPIService.selectUser(stockVO).toString());
 
     }
 
     @Test
     public void validateUser() {
-        log.info(pimangAPIService.validateUser(stockEntity));
+        log.info(pimangAPIService.validateUser(stockVO));
     }
 
     @Test

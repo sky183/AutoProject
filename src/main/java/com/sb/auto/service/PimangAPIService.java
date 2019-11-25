@@ -1,8 +1,8 @@
 package com.sb.auto.service;
 
 import com.sb.auto.mapper.PimangMapper;
-import com.sb.auto.model.EtcUser;
-import com.sb.auto.model.StockEntity;
+import com.sb.auto.model.EtcUserVO;
+import com.sb.auto.model.StockVO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,72 +18,72 @@ public class PimangAPIService {
 
     /**
      * 유저정보 조회
-     * @param stockEntity
+     * @param stockVO
      * @return
      */
-    public EtcUser selectUser(StockEntity stockEntity) {
-        return pimangMapper.selectUser(stockEntity.getUserId());
+    public EtcUserVO selectUser(StockVO stockVO) {
+        return pimangMapper.selectUser(stockVO.getUserId());
     }
 
     /**
      * 유저 유효성 체크
-     * @param stockEntity
+     * @param stockVO
      * @return
      */
-    public String validateUser(StockEntity stockEntity) {
-        EtcUser etcUser = selectUser(stockEntity);
-        if (etcUser == null) return "유저없음";
-        else if (!(etcUser.getUserPw().equals(stockEntity.getUserPw()))) return "비밀번호불일치";
+    public String validateUser(StockVO stockVO) {
+        EtcUserVO etcUserVO = selectUser(stockVO);
+        if (etcUserVO == null) return "유저없음";
+        else if (!(etcUserVO.getUserPw().equals(stockVO.getUserPw()))) return "비밀번호불일치";
         else return  "성공";
     }
     /**
      * 유저 정보 확인 후 유효하면 해당 Stock 업데이트 또는 삽입 후 결과를 성공으로 응답
-     * @param stockEntity
+     * @param stockVO
      * @return
      */
-    public String updateStock(StockEntity stockEntity) {
-        String resultString = validateUser(stockEntity);
+    public String updateStock(StockVO stockVO) {
+        String resultString = validateUser(stockVO);
         if (!resultString.equals("성공")) return resultString;
         else {
-            int number = pimangMapper.countNumber(stockEntity);
-            if (number == 0) pimangMapper.insertStock(stockEntity);
-            else pimangMapper.updateStock(stockEntity);
+            int number = pimangMapper.countNumber(stockVO);
+            if (number == 0) pimangMapper.insertStock(stockVO);
+            else pimangMapper.updateStock(stockVO);
             return  resultString;
         }
     }
 
     /**
      * 해당 유저의 Stock 정보 전체 조회
-     * @param stockEntity
+     * @param stockVO
      * @return
      */
-    public <T> T selectStock(StockEntity stockEntity) {
-        T resultString = (T) validateUser(stockEntity);
+    public <T> T selectStock(StockVO stockVO) {
+        T resultString = (T) validateUser(stockVO);
         if (!resultString.equals("성공")) return resultString;
-        else return (T) pimangMapper.selectStock(stockEntity.getUserId());
+        else return (T) pimangMapper.selectStock(stockVO.getUserId());
     }
 
     /**
      * 해당 number Stock삭제
-     * @param stockEntity
+     * @param stockVO
      * @return
      */
-    public String deleteByStockNumber(StockEntity stockEntity) {
-        String resultString = validateUser(stockEntity);
+    public String deleteByStockNumber(StockVO stockVO) {
+        String resultString = validateUser(stockVO);
         if (!resultString.equals("성공")) return resultString;
-        else pimangMapper.deleteStockNumber(stockEntity);
+        else pimangMapper.deleteStockNumber(stockVO);
         return  resultString;
     }
 
     /**
      * 유저의 모든 Stock삭제
-     * @param stockEntity
+     * @param stockVO
      * @return
      */
-    public String allDeleteStock(StockEntity stockEntity) {
-        String resultString = validateUser(stockEntity);
+    public String allDeleteStock(StockVO stockVO) {
+        String resultString = validateUser(stockVO);
         if (!resultString.equals("성공")) return resultString;
-        else pimangMapper.allDeleteStock(stockEntity.getUserId());
+        else pimangMapper.allDeleteStock(stockVO.getUserId());
         return  resultString;
     }
 }

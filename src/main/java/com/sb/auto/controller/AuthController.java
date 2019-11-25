@@ -1,7 +1,7 @@
 package com.sb.auto.controller;
 
 import com.sb.auto.common.annotation.CurrentUser;
-import com.sb.auto.model.UserEntity;
+import com.sb.auto.model.UserVO;
 import com.sb.auto.service.UserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.security.Principal;
 
 @Controller
-public class AccountController {
+public class AuthController {
 
     UserDetailService userDetailService;
 
     @Autowired
-    public AccountController(UserDetailService userDetailService) {
+    public AuthController(UserDetailService userDetailService) {
         this.userDetailService = userDetailService;
     }
 
@@ -35,22 +35,22 @@ public class AccountController {
 
     @GetMapping("/signup")
     public String signupForm(Model model) {
-        model.addAttribute("userEntity", new UserEntity());
+        model.addAttribute("userVO", new UserVO());
         return "signup";
     }
 
     @PostMapping("/signup")
     @ResponseBody
-    public UserEntity processSignUp(@ModelAttribute UserEntity userEntity) {
-        userEntity.setUserRole("USER");
+    public UserVO processSignUp(@ModelAttribute UserVO userVO) {
+        userVO.setUserRole("USER");
 //        return "redirect:/";
-        return userDetailService.insertUser(userEntity);
+        return userDetailService.insertUser(userVO);
     }
 
     @GetMapping("/access-denied")
-    public String accessDenied(Principal principal, @CurrentUser UserEntity userEntity, Model model) {
+    public String accessDenied(Principal principal, @CurrentUser UserVO userVO, Model model) {
         model.addAttribute("userId", principal.getName());
-        model.addAttribute("userRole", userEntity.getUserRole());
+        model.addAttribute("userRole", userVO.getUserRole());
         return "access-denied";
     }
 

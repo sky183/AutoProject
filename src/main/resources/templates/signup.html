@@ -14,7 +14,7 @@
 <body>
 <div class="container">
 
-    <form class="form-signin" action="/signup" method="post" th:object="${userEntity}" th:action="@{/signup}">
+    <form class="form-signin" action="/signup" method="post" th:object="${userVO}" th:action="@{/signup}">
         <h2 class="form-signin-heading">회원 가입</h2>
         <input type="text" class="form-control" placeholder="아이디" th:field="*{userId}"  required autofocus>
         <input type="password" class="form-control" th:field="*{userPw}"  placeholder="비밀번호" required>

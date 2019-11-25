@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 @Data
-public class EtcUser {
+public class EtcUserVO {
     @JsonIgnore
     private Integer userNum;
     private String userId;

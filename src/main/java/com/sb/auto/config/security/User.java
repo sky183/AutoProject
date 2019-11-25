@@ -1,6 +1,6 @@
 package com.sb.auto.config.security;
 
-import com.sb.auto.model.UserEntity;
+import com.sb.auto.model.UserVO;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
@@ -9,24 +9,26 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Principal 객체 - UserEntity를 생성해준다.
+ * Principal 객체 - UserVO를 생성해준다.
  */
 public class User extends org.springframework.security.core.userdetails.User {
 
-    private UserEntity userEntity;
+    private UserVO userVO;
 
-    public User(UserEntity userEntity) {
-        super(userEntity.getUserId(), userEntity.getUserPw(), authorities(userEntity));
-        this.userEntity = userEntity;
+    public User(UserVO userVO) {
+        super(userVO.getUserId(), userVO.getUserPw(), authorities(userVO));
+        //보안을 위해 password null처리
+        userVO.setUserPw(null);
+        this.userVO = userVO;
     }
 
-    public UserEntity getUserEntity() {
-        return userEntity;
+    public UserVO getUserVO() {
+        return userVO;
     }
 
-    private static Collection<? extends GrantedAuthority> authorities(UserEntity userEntity) {
+    private static Collection<? extends GrantedAuthority> authorities(UserVO userVO) {
         List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_" + userEntity.getUserRole()));
+        authorities.add(new SimpleGrantedAuthority("ROLE_" + userVO.getUserRole()));
         return authorities;
     }
 

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="com.sb.auto.mapper.MemberMapper">
+<mapper namespace="com.sb.auto.mapper.UserMapper">
 
-    <select id="findByUserId" resultType="com.sb.auto.model.UserEntity">
+    <select id="findByUserId" resultType="com.sb.auto.model.UserVO">
         select * from `MAINDB`.`USER`
         where USER_ID = #{userId}
     </select>
 
-    <insert id="save" parameterType="com.sb.auto.model.UserEntity">
+    <insert id="save" parameterType="com.sb.auto.model.UserVO">
         INSERT INTO `MAINDB`.`USER` (`USER_ID`, `USER_PW`, `USER_ROLE`, `USER_NAME`, `EMAIL`, `PHONE`, `POINT`) VALUES
         (#{userId}, #{userPw}, #{userRole}, #{userName}, #{email}, #{phone}, #{point});
     </insert>
 
-    <update id="updateUser" parameterType="com.sb.auto.model.UserEntity">
+    <update id="updateUser" parameterType="com.sb.auto.model.UserVO">
     </update>
 
     <insert id="paymentSave" parameterType="map">

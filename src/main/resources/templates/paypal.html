@@ -41,11 +41,13 @@
             </tr>
         </table>
         <input type="hidden" name="currency_code" value="USD">
-        <input type="hidden" name="custom" th:value="${userEntity.userId}">
+        <input type="hidden" name="custom" th:value="${userVO.userId}">
         <input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0"
                name="submit" alt="PayPal - The safer, easier way to pay online!">
         <img alt="" border="0" src="https://www.sandbox.paypal.com/ko_KR/i/scr/pixel.gif" width="1" height="1">
     </form>
+
+    <h1 th:text="${userVO}"></h1>
 
     <!--        &lt;!&ndash;action : 주소를 https://www.paypal.com/cgi-bin/webscr로 입력하게되면 business필드에 실제 페이팔 계정을 입력하면되고 실제로 결제가 이루어진다. 그러므로 테스트환경에서는 https://www.sandbox.paypal.com/cgi-bin/webscr로 입력하고 business필드에는 전에 만들어둔 샌드박스 판매자 테스트 계정을 입력하자.&ndash;&gt;
             <form class="form-signin" id="paypal" name="paypal" target="paypal_popup" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
@@ -101,7 +103,7 @@
                     </label>
                 </div>
                 &lt;!&ndash;custom : 이 필드는 상점내에서 추가로 정보를 전달할 수 있게 페이팔에서 지정한 커스텀 필드인데 보통 해당 필드에 상점내회원의 고유번호를 입력한다.&ndash;&gt;
-                <input type="hidden" name="custom"th:value="${userEntity.userId}">
+                <input type="hidden" name="custom"th:value="${userVO.userId}">
                 <input type="hidden" name="charset" value="UTF-8">
                 <br>
                 <button class="btn btn-sm btn-warning btn-block" type="submit" id="btn_submit">결제</button>

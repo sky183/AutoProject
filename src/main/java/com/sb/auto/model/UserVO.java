@@ -7,8 +7,7 @@ import javax.persistence.*;
 
 @Data
 @Entity
-//@Table(name = "USER")
-public class UserEntity {
+public class UserVO {
 
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer userSeq;

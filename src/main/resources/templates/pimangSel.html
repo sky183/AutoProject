@@ -14,7 +14,7 @@
 <body>
 <div class="container">
 
-    <form class="form-signin" action="/pimang/select" method="post" th:object="${stockEntity}" th:action="@{/pimang/select}">
+    <form class="form-signin" action="/pimang/select" method="post" th:object="${stockVO}" th:action="@{/pimang/select}">
         <h2 class="form-signin-heading">Select</h2>
         <input type="text" class="form-control" th:field="*{userId}"  placeholder="userId" >
         <input type="password" class="form-control" th:field="*{userPw}" placeholder="userPw" >
