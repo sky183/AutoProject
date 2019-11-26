@@ -10,24 +10,21 @@ public class PrincipalUtil {
 
     /**
      * User반환
-     * @return
+     * @return User
      */
     public static User getUser() {
         return (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
-
-
     /**
      * UserVO 반환
-     * @return
+     * @return UserVO
      */
     public static UserVO getUserVO() {
         return getUser().getUserVO();
     }
-
     /**
      * Authorities반환
-     * @return
+     * @return Collection
      */
     public static Collection getAutorities(){
         return getUser().getAuthorities();
