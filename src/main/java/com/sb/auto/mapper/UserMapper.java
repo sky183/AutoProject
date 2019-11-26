@@ -1,9 +1,8 @@
 package com.sb.auto.mapper;
 
+import com.sb.auto.model.PayPalVO;
 import com.sb.auto.model.UserVO;
 import org.apache.ibatis.annotations.Mapper;
-
-import java.util.Map;
 
 @Mapper
 public interface UserMapper {
@@ -13,7 +12,7 @@ public interface UserMapper {
 
     int updateUser(UserVO userVO);
 
-    int paymentSave(Map map);
+    int paymentSave(PayPalVO payPalVO);
 
-    int paymentUser(Map userMap);
+    int paymentUser(PayPalVO payPalVO);
 }

@@ -16,14 +16,14 @@
     <update id="updateUser" parameterType="com.sb.auto.model.UserVO">
     </update>
 
-    <insert id="paymentSave" parameterType="map">
-        INSERT INTO `MAINDB`.`PAYPAL` (`TXN_ID`, `USER_ID`, `PAYMENT_AMOUNT`, `PAYMENT_FEE`) VALUES
-        (#{txnId}, #{userId}, #{paymentAmount}, #{paymentFee});
+    <insert id="paymentSave" parameterType="com.sb.auto.model.PayPalVO">
+        INSERT INTO `MAINDB`.`PAYPAL` (`TXN_ID`, `USER_ID`, `MC_GROSS`, `MC_FEE`) VALUES
+        (#{txnId}, #{custom}, #{mcGross}, #{mcFee});
     </insert>
 
-    <update id="paymentUser" parameterType="map">
-        UPDATE `MAINDB`.`USER` SET POINT = POINT + #{paymentAmount}
-        WHERE USER_ID = #{userId}
+    <update id="paymentUser" parameterType="com.sb.auto.model.PayPalVO">
+        UPDATE `MAINDB`.`USER` SET POINT = POINT + #{mcGross}
+        WHERE USER_ID = #{custom}
     </update>
 
 

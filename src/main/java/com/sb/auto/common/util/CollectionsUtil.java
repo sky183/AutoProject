@@ -22,7 +22,7 @@ public class CollectionsUtil {
     }
 
     /**
-     * bean to map 함수 (key : camelCase, upperCase)
+     * map to bean 함수 (key : camelCase, upperCase)
      * @param map
      * @return
      */
@@ -136,13 +136,11 @@ public class CollectionsUtil {
             } catch (IllegalAccessException e) {
             } catch (IllegalArgumentException e) {
             } catch (InvocationTargetException e) {
+            } catch (Exception e) {
             }
         }
         return bean;
     }
-
-
-
 
     private static final Set<Class<?>> valueClasses = (Collections.unmodifiableSet(new HashSet<>(Arrays.asList(Object.class, String.class, Boolean.class,
             Character.class, Byte.class, Short.class, Integer.class, Long.class, Float.class, Double.class))));

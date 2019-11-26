@@ -1,10 +1,9 @@
 package com.sb.auto.service;
 
 import com.sb.auto.mapper.UserMapper;
+import com.sb.auto.model.PayPalVO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Map;
 
 @Service
 @Transactional
@@ -16,10 +15,10 @@ public class PayPalService {
         this.userMapper = userMapper;
     }
 
-    public String updatePoint(Map paymap) {
+    public String updatePoint(PayPalVO payPalVO ) {
         try {
-            userMapper.paymentSave(paymap);
-            userMapper.paymentUser(paymap);
+            userMapper.paymentSave(payPalVO);
+            userMapper.paymentUser(payPalVO);
         } catch (Exception e) {
             return "FAIL";
         }

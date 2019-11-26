@@ -1,11 +1,12 @@
 package com.sb.auto.controller;
 
-import com.sb.auto.config.security.User;
+import com.sb.auto.common.util.CollectionsUtil;
+import com.sb.auto.common.util.RequestUtil;
+import com.sb.auto.config.security.UserChangeFactory;
+import com.sb.auto.model.PayPalVO;
 import com.sb.auto.model.UserVO;
 import com.sb.auto.service.PayPalService;
-import com.sb.auto.service.UserDetailService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -30,18 +30,17 @@ import java.util.Map;
 public class PayPalController {
 
     PayPalService payPalService;
-    UserDetailService userDetailService;
+    UserChangeFactory userChangeFactory;
 
-    @Autowired
-    public PayPalController(PayPalService payPalService, UserDetailService userDetailService) {
+    public PayPalController(PayPalService payPalService, UserChangeFactory userChangeFactory) {
         this.payPalService = payPalService;
-        this.userDetailService = userDetailService;
+        this.userChangeFactory = userChangeFactory;
     }
 
     // PDT 전용
     private static final String PARAM_TX = "tx"; //PDT전용
     private static final String PARAM_AT = "at"; //PDT전용
-    //페이팔사이트에서 나와있는 Identity token값 PDT전용
+    //페이팔사이트에서 나와있는 Identity token값 - PDT전용
     private static String PARAM_AT_VALUE = "XRiSW0KBgmMT6NC2mGNQUxiQzS6J-kJlYAl07A3nRwxFFVQBmNa3mU8yHh4";
     //공통
     private static final String PARAM_CMD = "cmd";
@@ -58,33 +57,31 @@ public class PayPalController {
 
     /**
      * 페이팔 결제 PDT정보 핸들링
-     * @param request
      * @param model
      * @return
      * @throws Exception
      */
     @GetMapping("/paypal/pdt")
-    public String handleRequestPDT(HttpServletRequest request, Model model) throws Exception {
+    public String handleRequestPDT(Model model) throws Exception {
         String requestFlag = "PDT";
-        UserVO userVO = payPalListener(request, requestFlag);
+        UserVO userVO = payPalListener(requestFlag);
         if (userVO != null ) model.addAttribute("userVO", userVO);
         return "user";
     }
 
     /**
      * 페이팔 결제 IPN정보 핸들링
-     * @param request
      * @throws Exception
      */
     @PostMapping("/paypal/ipn")
     @ResponseStatus(HttpStatus.OK)
-    public void handleRequestIPNPost(HttpServletRequest request) throws Exception {
+    public void handleRequestIPNPost() throws Exception {
         String requestFlag = "IPN";
-        payPalListener(request, requestFlag);
+        payPalListener(requestFlag);
     }
 
 
-    public UserVO payPalListener(HttpServletRequest request, String requestFlag) throws Exception {
+    public UserVO payPalListener(String requestFlag) throws Exception {
 
         String urlPaypalValidate;
         String paramCmdValue;
@@ -108,13 +105,13 @@ public class PayPalController {
         }
 
         // PayPal로부터온 파라미터를 다시 PayPal로 게시하기 위해 파라미터를 구성한다.
-        Enumeration en = request.getParameterNames();
+        Enumeration en = RequestUtil.getParameterNames();
         String str = PARAM_CMD + "=" + paramCmdValue;
         HashMap vars = new HashMap();
         Map map = new HashMap();
         while (en.hasMoreElements()) {
             String paramName = (String) en.nextElement();
-            String paramValue = request.getParameter(paramName);
+            String paramValue = RequestUtil.getParameter(paramName);
             str = str + "&" + paramName + "=" + URLEncoder.encode(paramValue, "UTF-8");
             if(requestFlag.equals("IPN")) vars.put(paramName, URLEncoder.encode(paramValue, "UTF-8"));
         }
@@ -140,47 +137,26 @@ public class PayPalController {
                     temp = res.split("=");
                     if (temp.length == 2) {
                         vars.put(temp[0], URLDecoder.decode(temp[1], "UTF-8"));
-//                        log.info("{}{}{}", new Object[]{temp[0], ":", temp[1]});
+                        log.info("{}{}{}", new Object[]{temp[0], ":", temp[1]});
                     } else {
                         vars.put(temp[0], "");
-//                        log.info("{}{}{}", new Object[]{temp[0], ":", " "});
+                        log.info("{}{}{}", new Object[]{temp[0], ":", " "});
                     }
 
                 }
             }
-            String itemName = (String) vars.get(PARAM_ITEM_NAME);
-            String itemNumber = (String) vars.get(PARAM_ITEM_NUMBER);
-            String paymentStatus = (String) vars.get(PARAM_PAYMENT_STATUS);
-            double paymentAmount = Double.parseDouble((String) vars.get(PARAM_MC_GROSS));
-            double paymentFee = Double.parseDouble((String) vars.get(PARAM_MC_FEE));
-            String paymentCurrency = (String) vars.get(PARAM_MC_CURRENCY);
-            String txnId = (String) vars.get(PARAM_TXN_ID);
-            String receiverEmail = (String) vars.get(PARAM_RECEIVER_EMAIL);
-            String payerEmail = (String) vars.get(PARAM_PAYER_EMAIL);
-            String userseq = (String) vars.get(PARAM_CUSTOM);
 
-            map.put("itemName", itemName);
-            map.put("itemNumber", itemNumber);
-            map.put("paymentStatus", paymentStatus);
-            map.put("paymentAmount", paymentAmount);
-            map.put("paymentFee", paymentFee);
-            map.put("paymentCurrency", paymentCurrency);
-            map.put("txnId", txnId);
-            map.put("receiverEmail", receiverEmail);
-            map.put("payerEmail", payerEmail);
-            map.put("userseq", userseq);
+            PayPalVO payPalVO = new PayPalVO();
+            CollectionsUtil.mapToBean(vars, payPalVO);
+
+            log.info("paypalVO : " + payPalVO);
+
             //DB 작업 및 응답페이지 호출 등등 작업을 한다
-            if (paymentStatus.equals("Completed")) {
-                Map paymap = new HashMap();
-                paymap.put("txnId", txnId);
-                paymap.put("userId", userseq);
-                paymap.put("paymentAmount", paymentAmount);
-                paymap.put("paymentFee", paymentFee);
-                payPalService.updatePoint(paymap);
+            if (payPalVO.getPaymentStatus().equals("Completed")) {
+                payPalService.updatePoint(payPalVO);
             }
             if(requestFlag.equals("PDT")) {
-                User user = (User) userDetailService.loadUserByUsername(userseq);
-                return user.getUserVO();
+                return userChangeFactory.newUserVO(payPalVO.getCustom());
             }
         } else if (res.equals(responseFail)) {
             log.warn("페이팔서버로 부터 "+ requestFlag +"유효성 요청이 실패했습니다. 상태:" + res);

@@ -26,6 +26,10 @@ public class User extends org.springframework.security.core.userdetails.User {
         return userVO;
     }
 
+    public void setUserVO(UserVO userVO) {
+        this.userVO = userVO;
+    }
+
     private static Collection<? extends GrantedAuthority> authorities(UserVO userVO) {
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_" + userVO.getUserRole()));
